@@ -1,0 +1,66 @@
+@font-face {
+    font-family: "RM-Blackletter-Mono";
+    src:
+      url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
+      url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
+  }
+
+@font-face {
+  font-family: "RM-Sans-Mono";
+  src:
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff") format("woff"),
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
+}
+  
+#container {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    font-family: "RM-Blackletter-Mono";
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+    cursor: default;
+    mix-blend-mode: multiply;
+    color: lightgrey;
+}
+
+.column {
+    display: flex;
+    flex-direction: column-reverse;
+    width: calc(100% / 11);
+}
+
+.letter-container {
+    font-size: calc(10vw + 30px);
+    line-height: 0.9;
+    text-align: center;
+}
+
+section {
+    display: flex;
+    gap: 24px;
+    font-family: "RM-Sans-Mono";
+    margin: 24px;
+    line-height: 1.6;
+}
+
+section div {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex: 1 1 0px;
+}
+
+hr {
+    border-top: 1px solid black;
+}
+
+img {
+    width: 100%;
+}
+
+p {
+    font-size: 11px;
+}
