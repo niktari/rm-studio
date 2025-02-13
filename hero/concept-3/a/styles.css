@@ -1,0 +1,37 @@
+@font-face {
+  font-family: "RM-Blackletter-Mono";
+  src:
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
+}
+
+#container {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#container {
+  font-family: "RM-Blackletter-Mono";
+  text-align: center;
+  font-size: calc(150vw / 3);
+  transition: .1s;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 0;
+  cursor: pointer;
+  /* outline: 1px solid red; */
+}
+
+#container h1{
+  letter-spacing: -1vw;
+}
+
+#container ::selection {
+  background: transparent;
+  color: inherit;
+}

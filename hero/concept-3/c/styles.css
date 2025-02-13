@@ -1,0 +1,68 @@
+@font-face {
+  font-family: "RM-Blackletter-Mono";
+  src:
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "RM-Sans-Mono";
+  src:
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff") format("woff"),
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
+}
+
+#container {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#container {
+  text-align: center;
+  font-size: calc(150vw / 3);
+  transition: .1s;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  line-height: 0.7;
+  cursor: pointer;
+  /* outline: 1px solid red; */
+}
+
+#mainText{
+  width: 100%;
+}
+
+#hiddenText{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2vw;
+}
+
+#hiddenText span{
+  width: 100%;
+}
+
+.blackletter{
+  font-family: "RM-Blackletter-Mono";
+}
+
+.sans{
+  font-family: "RM-Sans-Mono";
+}
+
+#container h1{
+  letter-spacing: -0.5vw;
+}
+
+#container ::selection {
+  background: transparent;
+  color: inherit;
+}
