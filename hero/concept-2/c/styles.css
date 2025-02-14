@@ -28,7 +28,7 @@
     font-size: calc(100vw / 3);
     flex: 1 1 calc(100% / 15);
     align-self: center;
-    transition: 1s;
+    transition: font-size 1s;
     color: black;
     mix-blend-mode: multiply;
   }
@@ -41,6 +41,6 @@
     transform: translate(-50%, -50%);
     color: #5245E8;
     margin: 0;
-    transition: 1s;
+    /* transition: 1s; */
     mix-blend-mode: multiply;
   }

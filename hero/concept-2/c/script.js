@@ -87,7 +87,7 @@ function updateTiles(useValue) {
         letterInterval = null;
 
         tiles.forEach(tile => {
-            tile.style.color = "black";
+            tile.style.color = "#000000";
         })
      
     } else if (useValue > 3 && letterInterval === null) {
@@ -115,13 +115,14 @@ function cycleLetters() {
   } 
 
     letterInterval = setInterval(() => {
-          let randomIndices = getRandomIndices(tiles.length, Math.floor(Math.random() * tiles.length));
+    let randomIndices = getRandomIndices(tiles.length, Math.floor(Math.random() * tiles.length));
     let paraElems = [];
       
         randomIndices.forEach(randomIndex => {
             let paraElem = document.createElement("p");
             paraElem.textContent = tiles[randomIndex].textContent;
             paraElem.classList.add("new-letter");
+            // tiles[randomIndex].style.color = "#09D386";
             tiles[randomIndex].appendChild(paraElem);
             paraElems.push({ elem: paraElem, parent: tiles[randomIndex] }); // Store reference
         });
@@ -131,6 +132,8 @@ function cycleLetters() {
                 if (parent.contains(elem)) {
                     parent.removeChild(elem);
                 }
+
+                // parent.style.color = "#000000";
             });
         }, 1000);
 
