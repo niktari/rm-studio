@@ -23,13 +23,14 @@
   font-size: calc(150vw / 3);
   transition: .1s;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   align-content: center;
   gap: 2vw;
   cursor: pointer;
+  line-height: 1;
   /* outline: 1px solid red; */
 }
 
@@ -48,10 +49,10 @@
 .sans{
   font-family: "RM-Sans-Mono";
 }
-
+/* 
 #container h1{
   letter-spacing: -1vw;
-}
+} */
 
 #container ::selection {
   background: transparent;

@@ -17,7 +17,7 @@
   font-size: calc(150vw / 3);
   transition: .1s;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -27,9 +27,13 @@
   /* outline: 1px solid red; */
 }
 
-#container h1{
-  letter-spacing: -1vw;
+#hiddenText {
+  line-height: 1.2;
 }
+
+/* #container h1{
+  letter-spacing: -1vw;
+} */
 
 #container ::selection {
   background: transparent;

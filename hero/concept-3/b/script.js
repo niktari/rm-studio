@@ -15,14 +15,14 @@ const fullTextArray = [
 
 const fontSizeArr = [
   "calc(150vw / 3)",
-  "calc(95vw / 3)",
-  "calc(78vw / 3)",
+  "calc(80vw / 3)",
   "calc(55vw / 3)",
-  "calc(48vw / 3)",
-  "calc(45vw / 3)",
   "calc(40vw / 3)",
-  "calc(38vw / 3)",
-  "calc(35vw / 3)",
+  "calc(30vw / 3)",
+  "calc(25vw / 3)",
+  "calc(20vw / 3)",
+  "calc(18vw / 3)",
+  "calc(15vw / 3)",
 ];
 
 let index = 0;

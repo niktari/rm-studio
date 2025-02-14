@@ -23,7 +23,7 @@
   font-size: calc(150vw / 3);
   transition: .1s;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -43,7 +43,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 2vw;
+  line-height: 1.2;
 }
 
 #hiddenText span{
@@ -56,10 +56,6 @@
 
 .sans{
   font-family: "RM-Sans-Mono";
-}
-
-#container h1{
-  letter-spacing: -0.5vw;
 }
 
 #container ::selection {
