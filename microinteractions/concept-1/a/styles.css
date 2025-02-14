@@ -24,17 +24,19 @@
     cursor: default;
     mix-blend-mode: multiply;
     color: lightgrey;
+    padding: 16px;
+    padding-bottom: 0;
 }
 
 .column {
     display: flex;
     flex-direction: column-reverse;
-    width: calc(100% / 11);
+    width: calc(100% / 15);
 }
 
 .letter-container {
-    font-size: calc(10vw + 30px);
-    line-height: 0.9;
+    font-size: calc(7vw + 30px);
+    line-height: 0.8;
     text-align: center;
 }
 
@@ -42,7 +44,7 @@ section {
     display: flex;
     gap: 24px;
     font-family: "RM-Sans-Mono";
-    margin: 24px;
+    margin: 16px;
     line-height: 1.6;
 }
 
