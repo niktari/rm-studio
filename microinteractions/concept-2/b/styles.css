@@ -72,9 +72,9 @@ p {
     height: 80px;
     border-radius: 50%;
     font-family: "RM-Blackletter-Mono";
-    font-size: 4rem;
-    background-color: #72FBFD;
-    color: black;
+    font-size: 5.7rem;
+    /* background-color: #72FBFD; */
+    color: darkgrey;
     display: flex;
     justify-content: center;
     align-items: center;
