@@ -8,9 +8,11 @@ const fullTextArray = [
   "Design",
   "Practice",
   "of",
-  "Ryan Bugden",
+  "Ryan",
+  "Bugden",
   "&",
-  "Michelle Ando",
+  "Michelle",
+  "Ando"
 ];
 
 const fontSizeArr = [
@@ -23,6 +25,8 @@ const fontSizeArr = [
   "calc(20vw / 3)",
   "calc(18vw / 3)",
   "calc(15vw / 3)",
+  "calc(13vw / 3)",
+  "calc(10vw / 3)",
 ];
 
 let index = 0;

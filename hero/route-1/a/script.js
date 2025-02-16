@@ -1,7 +1,10 @@
+window.flag = true;
+
 const createSketch = (transitionDirection, containerId, letters) => {
   return (p) => {
     const breakpoint = 600;
     let canvasScaler;
+    let maxWindowSize = 1440;
     let imgM, imgR, imgAn;
     let gridSize = 5;
     let gridNum = 50;
@@ -9,7 +12,6 @@ const createSketch = (transitionDirection, containerId, letters) => {
     let pixelR = [];
     let pixelAn = [];
     let curPixel = [];
-    let flag = true;
 
     p.preload = () => {
       imgM = p.loadImage("../../../assets/imgs/letter-m.jpg");
@@ -20,8 +22,8 @@ const createSketch = (transitionDirection, containerId, letters) => {
     p.setup = () => {
       breakPointCalc();
       const cnv = p.createCanvas(
-        p.windowWidth / canvasScaler,
-        (p.windowWidth / canvasScaler) * (imgM.height / imgM.width)
+        p.min(p.windowWidth, maxWindowSize) / canvasScaler,
+        (p.min(p.windowWidth, maxWindowSize) / canvasScaler) * (imgM.height / imgM.width)
       );
       cnv.parent(containerId);
 
@@ -40,7 +42,7 @@ const createSketch = (transitionDirection, containerId, letters) => {
     }
 
     function calculateGrid() {
-      gridNum = p.floor(p.windowWidth / canvasScaler / 5.88);
+      gridNum = p.floor(p.width * 0.22);
       gridSize = p.floor(imgM.height / gridNum);
 
       if (letters) {
@@ -74,10 +76,7 @@ const createSketch = (transitionDirection, containerId, letters) => {
           const b = myImg.pixels[index + 2];
           const brightnessVal = (r + g + b) / 3;
           const mappedBrightnessVal = p.constrain(
-            p.map(brightnessVal, 0, 255, 0, 265),
-            0,
-            255
-          );
+            p.map(brightnessVal, 0, 255, 0, 265), 0, 255);
           const radius = p.map(mappedBrightnessVal, 255, 0, 0, 10);
           arr[row][col] = radius;
           col++;
@@ -88,7 +87,6 @@ const createSketch = (transitionDirection, containerId, letters) => {
 
     p.draw = () => {
       p.push();
-      p.translate((-p.height / gridNum) * 2.5, (-p.height / gridNum) * 2.5);
       p.clear();
 
       for (let y = 0; y < curPixel.length; y++) {
@@ -96,7 +94,7 @@ const createSketch = (transitionDirection, containerId, letters) => {
           //   p.fill(p.map(curPixel[y][x], 0, 10, 255, 0));
 
           if (letters) {
-            const finalValue = flag
+            const finalValue = window.flag
               ? transitionDirection === "MtoR"
                 ? pixelR[y][x]
                 : pixelM[y][x]
@@ -106,16 +104,18 @@ const createSketch = (transitionDirection, containerId, letters) => {
 
             curPixel[y][x] = p.lerp(curPixel[y][x], finalValue, 0.1);
             p.circle(
-              (x * p.height) / gridNum,
-              (y * p.height) / gridNum,
+              (x * p.height) / gridNum * 0.9,
+              (y * p.height) / gridNum * 0.9,
+              curPixel[y][x]
+            );
+          } else{
+            p.circle(
+              (x * p.height) / gridNum * 0.9,
+              (y * p.height) / gridNum * 0.9,
               curPixel[y][x]
             );
           }
-          p.circle(
-            (x * p.height) / gridNum,
-            (y * p.height) / gridNum,
-            curPixel[y][x]
-          );
+
         }
       }
       p.pop();
@@ -124,14 +124,14 @@ const createSketch = (transitionDirection, containerId, letters) => {
     p.windowResized = () => {
       breakPointCalc();
       p.resizeCanvas(
-        p.windowWidth / canvasScaler,
-        (p.windowWidth / canvasScaler) * (imgM.height / imgM.width)
+        p.min(p.windowWidth, maxWindowSize) / canvasScaler,
+        (p.min(p.windowWidth, maxWindowSize) / canvasScaler) * (imgM.height / imgM.width)
       );
       calculateGrid();
     };
 
     function changeFlag() {
-      flag = !flag;
+      window.flag = !window.flag;
     }
   };
 };
