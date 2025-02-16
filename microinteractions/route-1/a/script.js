@@ -1,6 +1,8 @@
 const c = document.getElementById("container");
 const numCols = 15;
 
+alert("For this sketch, make sure you're idle for three seconds to trigger the animation!")
+
 generateCols();
 
 function generateCols() {
