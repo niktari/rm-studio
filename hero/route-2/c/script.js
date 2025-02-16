@@ -9,6 +9,9 @@ let startingValue = 3;
 const tiles = [];
 const newTiles = [];
 
+const minY = window.innerHeight / 6;
+const maxY = window.innerHeight - (window.innerHeight / 6);
+
 const typefaces = ["RM-Blackletter-Mono", "RM-Sans-Mono"];
 
 let letterInterval = null;
@@ -51,29 +54,29 @@ function handleMouseMove(e) {
 
 
 function generateTiles(e) {
-    let useValue = Math.ceil(map(e.clientY, 0, window.innerHeight, 3, maxTiles));
-    let rowValue = map(useValue, 3, maxTiles, 3, 15);
+    let currentValue = Math.ceil(map(e.clientY, minY, maxY, 3, maxTiles))
+    let rowValue = map(currentValue, 3, maxTiles, 3, 15);
 
-    updateTiles(useValue);
+    updateTiles(currentValue);
     updateFontSize(rowValue);
 
-    startingValue = useValue;
+    startingValue = currentValue;
 }
 
-function updateTiles(useValue) {
+function updateTiles(currentValue) {
     let fragment = document.createDocumentFragment();
 
-    if (startingValue < useValue) {
+    if (startingValue < currentValue) {
         // Add new divs
-        for (let i = startingValue; i < useValue; i++) {
+        for (let i = startingValue; i < currentValue; i++) {
             if (!c.contains(tiles[i])) {
                 fragment.appendChild(tiles[i]);
             }
         }
         c.appendChild(fragment);
-    } else if (startingValue > useValue) {
+    } else if (startingValue > currentValue) {
         // Remove extra divs
-        for (let i = useValue; i < startingValue; i++) {
+        for (let i = currentValue; i < startingValue; i++) {
             if (c.contains(tiles[i])) {
                 c.removeChild(tiles[i]);
             }
@@ -82,7 +85,7 @@ function updateTiles(useValue) {
   
   // Stop animation when only 3 tiles are present
   // This avoids adding more than one letter to each div
-    if (useValue === 3 && letterInterval !== null) {
+    if (currentValue === 3 && letterInterval !== null) {
         clearInterval(letterInterval);
         letterInterval = null;
 
@@ -90,7 +93,7 @@ function updateTiles(useValue) {
             tile.style.color = "#000000";
         })
      
-    } else if (useValue > 3 && letterInterval === null) {
+    } else if (currentValue > 3 && letterInterval === null) {
       // Restart interval if tiles increase again
         cycleLetters();
 
@@ -144,7 +147,8 @@ function cycleLetters() {
 
 
 function map(value, low1, high1, low2, high2) {
-    return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
+    const mappedValue = low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
+    return Math.min(high2, Math.max(low2, mappedValue)); // Clamps to [low2, high2]
 }
 
 

@@ -5,10 +5,11 @@ const oneTile = window.innerWidth / 15;
 const totalArea = (window.innerHeight / oneTile) * 15;
 const maxTiles = (Math.floor(totalArea / 15)) * 15
 
+const minY = window.innerHeight / 6;
+const maxY = window.innerHeight - (window.innerHeight / 6);
+
 let startingValue = 3;
 const tiles = [];
-
-console.log(maxTiles)
 
 generateDivs();
 document.addEventListener("mousemove", handleMouseMove);
@@ -46,30 +47,31 @@ function handleMouseMove(e) {
 }
 
 function generateTiles(e) {
-    let useValue = Math.ceil(map(e.clientY, 0, window.innerHeight, 3, maxTiles));
-    let rowValue = map(useValue, 3, maxTiles, 3, 15);
+    // let fullValue = Math.ceil(map(e.clientY, 0, window.innerHeight, 3, maxTiles));
+    let currentValue = Math.ceil(map(e.clientY, minY, maxY, 3, maxTiles))
+    let rowValue = map(currentValue, 3, maxTiles, 3, 15);
 
-    updateTiles(useValue);
+    updateTiles(currentValue);
     updateFontSize(rowValue);
 
-    startingValue = useValue;
+    startingValue = currentValue;
 }
 
-function updateTiles(useValue) {
+function updateTiles(currentValue) {
     let fragment = document.createDocumentFragment();
 
-    if (startingValue < useValue) {
+    if (startingValue < currentValue) {
         // Add new divs
-        for (let i = startingValue; i < useValue; i++) {
+        for (let i = startingValue; i < currentValue; i++) {
             if (!c.contains(tiles[i])) {
                 fragment.appendChild(tiles[i]);
             }
             c.style.alignContent = "flex-start";
         }
         c.appendChild(fragment);
-    } else if (startingValue > useValue) {
+    } else if (startingValue > currentValue) {
         // Remove extra divs
-        for (let i = useValue; i < startingValue; i++) {
+        for (let i = currentValue; i < startingValue; i++) {
             if (c.contains(tiles[i])) {
                 c.removeChild(tiles[i]);
             }
@@ -88,5 +90,6 @@ function updateFontSize(rowValue) {
 }
 
 function map(value, low1, high1, low2, high2) {
-    return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
+    const mappedValue = low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
+    return Math.min(high2, Math.max(low2, mappedValue)); // Clamps to [low2, high2]
 }
