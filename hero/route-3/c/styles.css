@@ -1,9 +1,9 @@
 @font-face {
-  font-family: "RM-Blackletter-Mono";
-  src:
-    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
-    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
-}
+    font-family: "RM-Blackletter-Mono";
+    src:
+      url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
+      url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
+  }
 
 @font-face {
   font-family: "RM-Sans-Mono";
@@ -12,50 +12,39 @@
     url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
 }
 
+body {
+  overflow-y: hidden;
+}
+
 #container {
   width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-  text-align: center;
-  font-size: calc(150vw / 3);
-  transition: .1s;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
   align-content: center;
-  cursor: pointer;
-  gap: 1vw;
-  /* outline: 1px solid red; */
+  cursor: default;
+}
+  
+#container div {
+  position: relative;
+  font-family: RM-Blackletter-Mono;
+  text-align: center;
+  font-size: calc(100vw / 3);
+  flex: 1 1 calc(100% / 15);
+  align-self: center;
+  transition: font-size 1s;
+  color: black;
+  mix-blend-mode: multiply;
 }
 
-#mainText{
-  width: 100%;
-}
-
-#hiddenText{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1vw;
-}
-
-#hiddenText span{
-  width: 100%;
-}
-
-.blackletter{
-  font-family: "RM-Blackletter-Mono";
-}
-
-.sans{
-  font-family: "RM-Sans-Mono";
-}
-
-#container ::selection {
-  background: transparent;
-  color: inherit;
+.new-letter {
+  position: absolute;
+  font-family: RM-Sans-Mono;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #5245E8;
+  margin: 0;
+  /* transition: 1s; */
+  mix-blend-mode: multiply;
 }
