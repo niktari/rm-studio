@@ -51,7 +51,7 @@ const createSketch = (transitionDirection, containerId, letters) => {
         generatePixelArray(imgM, pixelM);
         generatePixelArray(imgR, pixelR);
         curPixel =
-          transitionDirection === "MtoR" ? deepCopy(pixelR) : deepCopy(pixelM);
+          transitionDirection === "RtoM" ? deepCopy(pixelR) : deepCopy(pixelM);
       } else {
         pixelAn = [];
         generatePixelArray(imgAn, pixelAn);
@@ -95,10 +95,10 @@ const createSketch = (transitionDirection, containerId, letters) => {
 
           if (letters) {
             const finalValue = window.flag
-              ? transitionDirection === "MtoR"
+              ? transitionDirection === "RtoM"
                 ? pixelR[y][x]
                 : pixelM[y][x]
-              : transitionDirection === "MtoR"
+              : transitionDirection === "RtoM"
               ? pixelM[y][x]
               : pixelR[y][x];
 
