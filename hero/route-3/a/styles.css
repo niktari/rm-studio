@@ -9,9 +9,6 @@
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-}
-
-#container {
   font-family: "RM-Blackletter-Mono";
   text-align: center;
   font-size: calc(150vw / 3);
@@ -26,14 +23,6 @@
   cursor: pointer;
   /* outline: 1px solid red; */
 }
-
-#hiddenText {
-  line-height: 1.2;
-}
-
-/* #container h1{
-  letter-spacing: -1vw;
-} */
 
 #container ::selection {
   background: transparent;

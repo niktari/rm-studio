@@ -3,16 +3,8 @@ const hiddenTextEl = document.getElementById("hiddenText");
 
 // Break full text into an array
 const fullTextArray = [
-  "is",
-  "the",
-  "Design",
-  "Practice",
-  "of",
-  "Ryan",
-  "Bugden",
-  "&",
-  "Michelle",
-  "Ando"
+  "is", "the", "Design", "Practice", "of",
+  "Ryan Bugden", "&", "Michelle Ando"
 ];
 
 const fontSizeArr = [
@@ -24,10 +16,9 @@ const fontSizeArr = [
   "calc(25vw / 3)",
   "calc(20vw / 3)",
   "calc(18vw / 3)",
-  "calc(15vw / 3)",
-  "calc(13vw / 3)",
-  "calc(10vw / 3)",
+  "calc(16vw / 3)",
 ];
+
 
 let index = 0;
 

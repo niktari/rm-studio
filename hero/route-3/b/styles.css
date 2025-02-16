@@ -16,9 +16,6 @@
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-}
-
-#container {
   text-align: center;
   font-size: calc(150vw / 3);
   transition: .1s;
@@ -49,10 +46,6 @@
 .sans{
   font-family: "RM-Sans-Mono";
 }
-/* 
-#container h1{
-  letter-spacing: -1vw;
-} */
 
 #container ::selection {
   background: transparent;
