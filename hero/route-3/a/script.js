@@ -66,7 +66,7 @@ function updateTiles(currentValue) {
             if (!c.contains(tiles[i])) {
                 fragment.appendChild(tiles[i]);
             }
-            c.style.alignContent = "flex-start";
+            // c.style.alignContent = "flex-start";
         }
         c.appendChild(fragment);
     } else if (startingValue > currentValue) {
@@ -77,7 +77,7 @@ function updateTiles(currentValue) {
             }
         }
 
-        c.style.alignContent = "center";
+        // c.style.alignContent = "center";
     }
 }
 
