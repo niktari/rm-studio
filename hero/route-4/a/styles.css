@@ -1,0 +1,33 @@
+@font-face {
+    font-family: "RM-Blackletter-Mono";
+    src:
+      url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
+      url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
+  }
+  
+  @font-face {
+    font-family: "RM-Sans-Mono";
+    src:
+      url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff") format("woff"),
+      url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
+}
+
+body {
+    overflow-y: hidden;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+}
+
+.letter {
+    font-family: "RM-Blackletter-Mono";
+    font-size: 1.2vw;
+    position: relative;
+    transition: 1s ease-in-out;
+    animation-delay: 0.5s;
+}
