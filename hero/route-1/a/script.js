@@ -1,4 +1,4 @@
-window.flag = true;
+window.flag = false;
 
 const createSketch = (transitionDirection, containerId, letters) => {
   return (p) => {
