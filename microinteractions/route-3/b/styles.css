@@ -35,6 +35,21 @@ img {
     width: 100%;
 }
 
+a {
+    color: #000000;
+    border-bottom: 1px solid #000000;
+}
+/* 
+a:hover {
+    font-family: "RM-Blackletter-Mono";
+} */
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
 p {
     font-size: 11px;
     cursor: default;
