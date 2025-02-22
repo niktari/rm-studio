@@ -13,18 +13,15 @@
 }
 
 #container {
+    position: relative;
     width: 100%;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    height: 30vh;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
     font-family: "RM-Blackletter-Mono";
-    display: flex;
     margin: auto;
-    justify-content: space-between;
     cursor: default;
-    mix-blend-mode: multiply;
-    color: lightgrey;
+    /* background-color: black; */
 }
 
 .column {
@@ -74,7 +71,7 @@ p {
     font-family: "RM-Blackletter-Mono";
     font-size: 5.7rem;
     /* background-color: #72FBFD; */
-    color: darkgrey;
+    /* color: white; */
     display: flex;
     justify-content: center;
     align-items: center;

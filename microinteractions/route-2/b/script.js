@@ -2,11 +2,9 @@ const container = document.getElementById("container");
 const content = ["R", "&", "M"];
 const numBalls = 3;
 const ballSize = 80;
-const maxBallNum = 30;
+const maxBallNum = 9;
 const speed = 5;
 const balls = [];
-
-alert("For this sketch, make sure you're idle for three seconds to trigger the animation!")
 
 class Ball {
   constructor(index) {
@@ -73,9 +71,13 @@ function checkCollisions() {
 }
 
 function addNewBall() {
-  if (balls.length >= maxBallNum) return;
-  balls.push(new Ball(balls.length));
+  for(let i = 0; i < maxBallNum; i++) {
+    balls.push(new Ball(i));
+  }
 }
+
+addNewBall();
+
 
 function animate() {
   balls.forEach((ball) => ball.move());
@@ -84,34 +86,3 @@ function animate() {
 }
 
 animate();
-
-let inactivityTimeout;
-let ballInterval;
-
-function startInactivityTimer() {
-  inactivityTimeout = setTimeout(() => {
-    ballInterval = setInterval(addNewBall, 2500);
-  }, 5000);
-}
-
-startInactivityTimer();
-
-["click", "keydown", "touchstart", "mousemove"].forEach((event) => {
-  document.addEventListener(event, resetBalls);
-});
-
-function resetBalls() {
-  balls.forEach((ball) => {
-    ball.el.style.transition = "opacity 0.5s ease-out";
-    ball.el.style.opacity = 0;
-  });
-
-  clearInterval(ballInterval);
-  clearTimeout(inactivityTimeout);
-  startInactivityTimer();
-
-  setTimeout(() => {
-    balls.length = 0;
-    container.innerHTML = "";
-  }, 500);
-}

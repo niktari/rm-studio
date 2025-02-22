@@ -12,12 +12,20 @@
       url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
 }
 
+body {
+    margin: 12px;
+    /* margin-bottom: 0; */
+}
+
 section {
     display: flex;
     gap: 24px;
     font-family: "RM-Sans-Mono";
-    margin: 24px;
+    padding: 12px 0;
     line-height: 1.6;
+    font-size: 11px;
+    border-top: 1px solid #000000;
+    cursor: default;
 }
 
 section div {
@@ -27,8 +35,9 @@ section div {
     flex: 1 1 0px;
 }
 
-hr {
-    border-top: 1px solid black;
+ul {
+    list-style-type: square;
+    padding-inline-start: 12px;
 }
 
 img {
@@ -41,11 +50,6 @@ a {
 
 a:hover {
     font-family: "RM-Blackletter-Mono";
-}
-
-p {
-    font-size: 11px;
-    cursor: default;
 }
 
 .links {
@@ -66,4 +70,40 @@ p {
 
 .blackletter {
     font-family: "RM-Blackletter-Mono";
+}
+
+#container--wrapper {
+    position: relative;
+    height: 20vh;
+    /* background-color: green; */
+    overflow-y: hidden;
+    border-bottom: 1px solid #000000;
+}
+
+#container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 50vh;
+    font-family: "RM-Blackletter-Mono";
+    margin: auto;
+    cursor: default;
+    /* background-color: rgba(255, 0, 0, 0.176); */
+    top: calc(50% - 25vh);
+    z-index: -999;
+}
+
+.ball {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-family: "RM-Blackletter-Mono";
+    font-size: 5.7rem;
+    /* background-color: #72FBFD; */
+    /* color: white; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
