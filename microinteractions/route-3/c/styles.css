@@ -14,17 +14,15 @@
 
 body {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 12px;
     height: 100vh;
+    justify-content: space-between;
 }
 
 section {
     display: flex;
     gap: 24px;
     font-family: "RM-Sans-Mono";
-    padding: 12px 0;
+    padding: 12px;
     line-height: 1.6;
     font-size: 11px;
     border-top: 1px solid #000000;
@@ -80,7 +78,11 @@ a:hover {
     height: 20vh;
     /* background-color: green; */
     overflow-y: hidden;
-    border-bottom: 1px solid #000000;
+    color: #ffffff;
+}
+
+#container--wrapper a {
+    color: #ffffff;
 }
 
 #container {
@@ -95,6 +97,7 @@ a:hover {
     /* background-color: rgba(255, 0, 0, 0.176); */
     top: calc(50% - 25vh);
     z-index: -999;
+    background-color: #000000;
 }
 
 .ball {
@@ -109,4 +112,5 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    Color: #ffffff;
 }
