@@ -48,7 +48,7 @@ const container = document.getElementById("container");
 const content = ["R", "&", "M"];
 const numBalls = 3;
 const ballSize = 80;
-const maxBallNum = 9;
+const maxBallNum = 12;
 const speed = 5;
 const balls = [];
 
