@@ -1,55 +1,11 @@
-function wrapWordsInDivs() {
-  const allText = document.querySelectorAll(".effect");
-
-
-
-  for(let text of allText) {
-    const content = text.textContent;
-    const words = content.split(' ');
-  
-    const wordsWrapped = words.map(word => `<div class="effect--div">${word}</div>`).join(' ');
-  
-    text.innerHTML = wordsWrapped;
-  }
-
-}
-
-wrapWordsInDivs();
-
-let wordsDiv = document.querySelectorAll(".effect--div");
-
-function applyTextEffect() {
-  wordsDiv.forEach(word => {
-    word.onmouseover = function() {
-      if(word.classList.contains("blackletter")) {
-          word.classList.remove("blackletter")
-            } else {
-              word.classList.add("blackletter")
-      }
-
-          
-
-      setTimeout(()=> {
-        if(word.classList.contains("blackletter")) {
-          word.classList.remove("blackletter")
-          }
-
-      }, 1000)
-    }
-  })
-}
-
-applyTextEffect();
-
-
 // BALL
 
 const container = document.getElementById("container");
 const content = ["R", "&", "M"];
 const numBalls = 3;
 const ballSize = 80;
-const maxBallNum = 12;
-const speed = 5;
+const maxBallNum = 3;
+const speed = 1;
 const balls = [];
 
 class Ball {
@@ -61,8 +17,8 @@ class Ball {
 
     this.x = Math.random() * (container.clientWidth - ballSize);
     this.y = Math.random() * (container.clientHeight - ballSize);
-    this.dx = (Math.random() - 0.5) * speed;
-    this.dy = (Math.random() - 0.5) * speed;
+    this.dx = speed;
+    this.dy = speed;
     this.angle = 0;
   }
 
@@ -132,3 +88,46 @@ function animate() {
 }
 
 animate();
+
+// function wrapWordsInDivs() {
+//   const allText = document.querySelectorAll(".effect");
+
+
+
+//   for(let text of allText) {
+//     const content = text.textContent;
+//     const words = content.split(' ');
+  
+//     const wordsWrapped = words.map(word => `<div class="effect--div">${word}</div>`).join(' ');
+  
+//     text.innerHTML = wordsWrapped;
+//   }
+
+// }
+
+// wrapWordsInDivs();
+
+// let wordsDiv = document.querySelectorAll(".effect--div");
+
+// function applyTextEffect() {
+//   wordsDiv.forEach(word => {
+//     word.onmouseover = function() {
+//       if(word.classList.contains("blackletter")) {
+//           word.classList.remove("blackletter")
+//             } else {
+//               word.classList.add("blackletter")
+//       }
+
+          
+
+//       setTimeout(()=> {
+//         if(word.classList.contains("blackletter")) {
+//           word.classList.remove("blackletter")
+//           }
+
+//       }, 1000)
+//     }
+//   })
+// }
+
+// applyTextEffect();

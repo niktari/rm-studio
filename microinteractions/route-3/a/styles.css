@@ -18,12 +18,12 @@ body {
     justify-content: space-between;
     margin: 12px;
     height: 100vh;
+    font-family: "RM-Sans-Mono";
 }
 
 section {
     display: flex;
     gap: 24px;
-    font-family: "RM-Sans-Mono";
     padding: 12px 0;
     line-height: 1.6;
     font-size: 11px;
@@ -61,40 +61,16 @@ a:hover {
     gap: 0;
 }
 
-.effect--div {
-    display: inline-block;
-}
-
-.effect--span {
-    position: relative;
-    display: inline-block;
-    transition: 0.3s ease-in-out;
-}
-
 .blackletter {
     font-family: "RM-Blackletter-Mono";
 }
 
-#container--wrapper {
-    position: relative;
-    height: 20vh;
-    /* background-color: green; */
-    overflow-y: hidden;
-    border-bottom: 1px solid #000000;
-}
-
 #container {
-    position: absolute;
-    left: 0;
-    top: 0;
     width: 100%;
     height: 50vh;
-    font-family: "RM-Blackletter-Mono";
     margin: auto;
     cursor: default;
-    /* background-color: rgba(255, 0, 0, 0.176); */
     top: calc(50% - 25vh);
-    z-index: -999;
 }
 
 .ball {
@@ -104,9 +80,8 @@ a:hover {
     border-radius: 50%;
     font-family: "RM-Blackletter-Mono";
     font-size: 5.7rem;
-    /* background-color: #72FBFD; */
-    /* color: white; */
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: -999;
 }
