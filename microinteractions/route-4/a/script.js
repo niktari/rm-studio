@@ -34,7 +34,7 @@ function handleHoverEffect(selectors) {
     });
 
     el.addEventListener('mouseleave', () => {
-      viewMore.style.transform = "translate(-50%, -50%) scale(0.5)";
+      viewMore.style.transform = "translate(-50%, -100%) scale(0.5)";
       viewMore.style.opacity = "0";
       el.style.cursor = "default";
     });
