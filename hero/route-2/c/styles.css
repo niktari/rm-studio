@@ -96,7 +96,7 @@ body {
   font-size: 2rem;
   transform: translate(-50%, -50%);
   white-space: nowrap;
-  letter-spacing: 0.1em;
+  /* letter-spacing: 0.1em; */
   opacity: 0;
   transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 }
@@ -123,7 +123,7 @@ body {
   }
 
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
   }
 
   100% {

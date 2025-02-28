@@ -82,16 +82,53 @@ const cursor = document.querySelector(".custom-cursor");
 let timeout;
 
 function animateText() {
-  const originalText = cursor.innerHTML.trim();
+  // const originalText = cursor.innerHTML.trim();
+
+  const originalText = cursor.textContent;
   cursor.innerHTML = "";
 
-  originalText.split("").forEach((char, index) => {
-    let span = document.createElement("span");
-    span.textContent = char;
-    cursor.appendChild(span);
+  let words = originalText.split(' ');
 
-    span.style.animationDelay = `${index * 0.3}s`;
-  });
+  // console.log(words);
+
+  let wordWrapper = '';
+
+  wordWrapper = words.map(word => `<span class="word">${word}</span>`).join(`<span>&nbsp;</span>`);
+
+  cursor.innerHTML = wordWrapper;
+
+  let wordSpans = document.querySelectorAll(".word");
+
+  wordSpans.forEach(wordSpan => {
+    let text = wordSpan.innerText;
+    let letterWrapper = '';
+
+    for(let i = 0; i < text.length; i++) {
+      letterWrapper += `<span class="letter">${text.charAt(i)}</span>`
+    }
+
+    console.log(letterWrapper);
+
+    wordSpan.innerHTML = letterWrapper;
+
+    let letterSpans = document.querySelectorAll(".letter");
+
+    letterSpans.forEach((letterSpan, index) => {
+      letterSpan.style.animationDelay = `${index * 0.3}s`;
+    })
+
+
+  })
+
+  // MS Original Code
+  // originalText.split("").forEach((char, index) => {
+  //   let span = document.createElement("span");
+  //   span.textContent = char;
+
+  //   cursor.appendChild(span);
+
+  //   span.style.animationDelay = `${index * 0.3}s`;
+  // });
 }
 
 animateText();
