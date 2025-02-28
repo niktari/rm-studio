@@ -21,7 +21,7 @@
     color: black;
     transform: translate(-50%, -100%);
     white-space: nowrap;
-    letter-spacing: 0.1em;
+    /* letter-spacing: 0.1em; */
     opacity: 0;
     transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 }
