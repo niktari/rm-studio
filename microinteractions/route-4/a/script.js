@@ -34,14 +34,48 @@ function handleViewMore() {
 
   if (!viewMore.dataset.animated) {
     viewMore.dataset.animated = "true";
-    const text = viewMore.textContent.trim();
+
+    const originalText = viewMore.textContent;
     viewMore.innerHTML = "";
-    text.split("").forEach((char, i) => {
-      let span = document.createElement("span");
-      span.textContent = char;
-      span.style.animationDelay = `${i * 0.3}s`;
-      viewMore.appendChild(span);
-    });
+  
+    let words = originalText.split(' ');
+  
+    let wordWrapper = '';
+  
+    wordWrapper = words.map(word => `<span class="word">${word}</span>`).join(`<span>&nbsp;</span>`);
+  
+    viewMore.innerHTML = wordWrapper;
+  
+    let wordSpans = document.querySelectorAll(".word");
+  
+    wordSpans.forEach(wordSpan => {
+      let text = wordSpan.innerText;
+      let letterWrapper = '';
+  
+      for(let i = 0; i < text.length; i++) {
+        letterWrapper += `<span class="letter">${text.charAt(i)}</span>`
+      }
+  
+      wordSpan.innerHTML = letterWrapper;
+  
+      let letterSpans = document.querySelectorAll(".letter");
+  
+      letterSpans.forEach((letterSpan, index) => {
+        letterSpan.style.animationDelay = `${index * 0.3}s`;
+      })
+  
+  
+    })
+    
+    // MS Original Code
+    // const text = viewMore.textContent.trim();
+    // viewMore.innerHTML = "";
+    // text.split("").forEach((char, i) => {
+    //   let span = document.createElement("span");
+    //   span.textContent = char;
+    //   span.style.animationDelay = `${i * 0.3}s`;
+    //   viewMore.appendChild(span);
+    // });
   }
 
   addHoverEffect(".project-card");

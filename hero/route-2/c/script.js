@@ -89,8 +89,6 @@ function animateText() {
 
   let words = originalText.split(' ');
 
-  // console.log(words);
-
   let wordWrapper = '';
 
   wordWrapper = words.map(word => `<span class="word">${word}</span>`).join(`<span>&nbsp;</span>`);
@@ -106,8 +104,6 @@ function animateText() {
     for(let i = 0; i < text.length; i++) {
       letterWrapper += `<span class="letter">${text.charAt(i)}</span>`
     }
-
-    console.log(letterWrapper);
 
     wordSpan.innerHTML = letterWrapper;
 
