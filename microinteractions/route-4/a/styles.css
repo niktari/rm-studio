@@ -12,7 +12,7 @@
         url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
 }
 
-.custom-cursor {
+#custom-cursor {
     position: fixed;
     pointer-events: none;
     z-index: 1000;
@@ -27,7 +27,7 @@
     transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 }
 
-.custom-cursor span {
+#custom-cursor span {
     font-family: "RM-Blackletter-Mono";
     display: inline-block;
     animation: changeFont 3s ease-in-out infinite alternate, waveMotion 3s ease-in-out infinite alternate;
