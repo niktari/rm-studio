@@ -61,8 +61,7 @@ function handleViewMore() {
   }
 
   animateText();
-  addHoverEffect(".project-card"); // Apply to project cards
-  addHoverEffect(".thumbnail.linked"); // Apply to linked thumbnails
+  addHoverEffect(".project-card");
 }
 
 function initializeViewMore() {
