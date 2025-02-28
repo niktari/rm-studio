@@ -72,6 +72,12 @@ function updateFontSize() {
   hiddenTextEl.style.transform = `scale(${scaleFactor.toFixed(2)})`;
 }
 
+document.addEventListener("mouseover", function(){
+  const currentText = fullTextArrayStyles[index];
+  const { content, style } = currentText;
+  console.log(content);
+})
+
 // CURSOR
 const cursor = document.querySelector(".custom-cursor");
 let timeout;
