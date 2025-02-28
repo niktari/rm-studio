@@ -1,7 +1,7 @@
 const viewMore = document.querySelector("#view-more");
-const selectDivClass = document.querySelectorAll(".project-card");
 let timeout;
 
+// Function to animate the text inside the viewMore button
 function animateText() {
   const originalText = viewMore.innerHTML.trim();
   viewMore.innerHTML = "";
@@ -17,22 +17,29 @@ function animateText() {
 
 animateText();
 
-// Show cursor only on hover of viewmore elements
-selectDivClass.forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    viewMore.style.transform = "translate(-50%, -50%) scale(1)";
-    viewMore.style.opacity = "1";
-    el.style.cursor = "pointer";
-  });
+// General function to handle hover effect for any class
+function handleHoverEffect(selectors) {
+  const elements = document.querySelectorAll(selectors);
 
-  el.addEventListener('mousemove', (e) => {
-    viewMore.style.left = `${e.pageX}px`;
-    viewMore.style.top = `${e.pageY}px`;
-  });
+  elements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      viewMore.style.transform = "translate(-50%, -50%) scale(1)";
+      viewMore.style.opacity = "1";
+      el.style.cursor = "pointer";
+    });
 
-  el.addEventListener('mouseleave', () => {
-    viewMore.style.transform = "translate(-50%, -50%) scale(0.5)";
-    viewMore.style.opacity = "0";
-    el.style.cursor = "default";
+    el.addEventListener('mousemove', (e) => {
+      viewMore.style.left = `${e.clientX}px`;
+      viewMore.style.top = `${e.clientY}px`;
+    });
+
+    el.addEventListener('mouseleave', () => {
+      viewMore.style.transform = "translate(-50%, -50%) scale(0.5)";
+      viewMore.style.opacity = "0";
+      el.style.cursor = "default";
+    });
   });
-});
+}
+
+handleHoverEffect('.project-card'); // For project cards
+handleHoverEffect('media-item.thumbnail.linked');
