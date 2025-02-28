@@ -16,7 +16,8 @@ body.stop-transitions * {
   transition: none !important;
 }
 
-html, body{
+html,
+body {
   overflow: hidden;
   cursor: pointer;
   background: white;
@@ -31,41 +32,44 @@ html, body{
   align-items: flex-start;
 }
 
-#hiddenText{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+#hiddenText {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: center; */
   gap: 0;
-  font-size: calc(1.5vw / 3);
-  transform: scale(100);
+  font-size: 30px;
   transform-origin: top center;
-  width: max-content;
+  /* outline: 1px solid red; */
+  /* width: max-content; */
   transition: 0.1s;
 }
 
-#hiddenText.no-transition{
+#hiddenText.no-transition {
   transition: none;
 }
 
-#hiddenText.onlyRandM{
+#hiddenText.onlyRandM {
   position: absolute;
   top: 50%;
-  transform: scale(100) translate(0%, -50%);
+  transform: scale(1) translate(0%, -50%);
   transition: none;
+  font-size: calc(150vw / 3);
 }
 
-#hiddenText div{
-  width: max-content;
+#hiddenText div {
+  /* outline: .01px solid red; */
+  /* height: auto; */
+  /* width: max-content; */
   text-align: center;
-  line-height: 1.2;
+  /* line-height: 1.2; */
 }
 
-.blackletter{
+.blackletter {
   font-family: "RM-Blackletter-Mono";
 }
 
-.sans{
+.sans {
   font-family: "RM-Sans-Mono";
 }
 
@@ -104,12 +108,25 @@ html, body{
 }
 
 @keyframes changeFont {
-  0% { font-family: "RM-Blackletter-Mono"; }
-  100% { font-family: "RM-Sans-Mono"; }
+  0% {
+    font-family: "RM-Blackletter-Mono";
+  }
+
+  100% {
+    font-family: "RM-Sans-Mono";
+  }
 }
 
 @keyframes waveMotion {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-5px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
