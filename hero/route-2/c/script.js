@@ -1,6 +1,8 @@
 const textContainer = document.getElementById("container");
 const hiddenTextEl = document.getElementById("hiddenText");
 
+let textDivs;
+
 const fullTextArrayStyles = [
   { content: "is", style: "sans" },
   { content: "the", style: "blackletter" },
@@ -72,11 +74,6 @@ function updateFontSize() {
   hiddenTextEl.style.transform = `scale(${scaleFactor.toFixed(2)})`;
 }
 
-document.addEventListener("mouseover", function(){
-  const currentText = fullTextArrayStyles[index];
-  const { content, style } = currentText;
-  console.log(content);
-})
 
 // CURSOR
 const cursor = document.querySelector(".custom-cursor");
@@ -84,7 +81,6 @@ let timeout;
 
 function animateText() {
   const originalText = cursor.innerHTML.trim();
-  console.log(originalText);
   cursor.innerHTML = "";
 
   originalText.split("").forEach((char, index) => {
