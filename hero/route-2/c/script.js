@@ -29,7 +29,7 @@ let index = 0;
 
 textContainer.addEventListener("click", () => {
   if (index < fullTextArray.length) {
-    const font = index%2 === 0 ? "sans" : "blackletter";
+    const font = index % 2 === 0 ? "sans" : "blackletter";
     hiddenTextEl.innerHTML += `<span class="${font}">${fullTextArray[index]}</span>`;
     index++;
     updateFontSize();
@@ -42,4 +42,46 @@ textContainer.addEventListener("click", () => {
 
 function updateFontSize() {
   textContainer.style.fontSize = fontSizeArr[index];
+}
+
+const cursor = document.querySelector(".custom-cursor");
+let timeout;
+
+function animateText() {
+  const originalText = cursor.innerHTML.trim();
+  console.log(originalText);
+  cursor.innerHTML = "";
+
+  originalText.split("").forEach((char, index) => {
+    let span = document.createElement("span");
+    span.textContent = char;
+    cursor.appendChild(span);
+
+    span.style.animationDelay = `${index * 0.3}s`;
+  });
+}
+
+animateText();
+
+document.addEventListener("mousemove", (e) => {
+  cursor.style.left = `${e.clientX}px`;
+  cursor.style.top = `${e.clientY}px`;
+  cursor.style.transform = "translate(-50%, -50%) scale(1)";
+  cursor.style.opacity = "1";
+
+  clearTimeout(timeout);
+  timeout = setTimeout(() => {
+    disppearCursor();
+  }, 10000);
+});
+
+document.addEventListener("mousedown", () => {
+  disppearCursor();
+});
+
+disppearCursor();
+
+function disppearCursor() {
+  cursor.style.transform = "translate(-50%, -50%) scale(0.5)";
+  cursor.style.opacity = "0";
 }
