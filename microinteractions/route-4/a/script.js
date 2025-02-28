@@ -29,8 +29,8 @@ function handleHoverEffect(selectors) {
     });
 
     el.addEventListener('mousemove', (e) => {
-      viewMore.style.left = `${e.clientX}px`;
-      viewMore.style.top = `${e.clientY}px`;
+      viewMore.style.left = `${e.pageX}px`;
+      viewMore.style.top = `${e.pageY}px`;
     });
 
     el.addEventListener('mouseleave', () => {
