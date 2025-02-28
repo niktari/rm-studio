@@ -29,7 +29,7 @@
 #view-more span {
     font-family: "RM-Blackletter-Mono";
     display: inline-block;
-    font-size: 32px;
+    font-size: 32px!important;
     animation: changeFont 3s ease-in-out infinite alternate, waveMotion 3s ease-in-out infinite alternate;
 }
 
