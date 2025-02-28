@@ -1,58 +1,66 @@
 function handleViewMore() {
   const viewMore = document.querySelector("#view-more");
   if (!viewMore) {
-      console.log("handleViewMore: #view-more not found.");
-      return;
+    console.error("handleViewMore: #view-more not found.");
+    return;
   }
 
   const parentContainer = viewMore.parentElement;
   if (!parentContainer) {
-      console.log("handleViewMore: Parent container not found.");
-      return;
+    console.error("handleViewMore: Parent container not found.");
+    return;
   }
 
-  console.log("handleViewMore: Initialized. Adding hover effects.");
-
-  // Handles hover effects for specified elements
   function addHoverEffect(selector) {
-      const elements = document.querySelectorAll(selector);
-      if (elements.length === 0) {
-          console.log(`addHoverEffect: No elements found for selector '${selector}'.`);
-          return;
-      }
+    const elements = document.querySelectorAll(selector);
+    if (elements.length === 0) {
+      console.error(
+        `addHoverEffect: No elements found for selector '${selector}'.`
+      );
+      return;
+    }
 
-      console.log(`addHoverEffect: Adding hover effects to ${elements.length} elements matching '${selector}'.`);
-
-      elements.forEach((element) => {
-          element.addEventListener("mouseenter", () => {
-              console.log(`Mouse entered ${selector}`);
-              Object.assign(viewMore.style, {
-                  transform: "translate(-50%, -100%) scale(1)",
-                  opacity: "1"
-              });
-              element.style.cursor = "pointer";
-          });
-
-          element.addEventListener("mousemove", (e) => {
-              const { left, top } = parentContainer.getBoundingClientRect();
-              Object.assign(viewMore.style, {
-                  left: `${e.clientX - left}px`,
-                  top: `${e.clientY - top}px`
-              });
-              console.log(`Mouse moved over ${selector}: x=${e.clientX - left}, y=${e.clientY - top}`);
-          });
-
-          element.addEventListener("mouseleave", () => {
-              console.log(`Mouse left ${selector}`);
-              Object.assign(viewMore.style, {
-                  transform: "translate(-50%, -100%) scale(0.5)",
-                  opacity: "0"
-              });
-              element.style.cursor = "default";
-          });
+    elements.forEach((element) => {
+      element.addEventListener("mouseenter", () => {
+        Object.assign(viewMore.style, {
+          transform: "translate(-50%, -100%) scale(1)",
+          opacity: "1",
+        });
+        element.style.cursor = "pointer";
       });
+
+      element.addEventListener("mousemove", (e) => {
+        const { left, top } = parentContainer.getBoundingClientRect();
+        Object.assign(viewMore.style, {
+          left: `${e.clientX - left}px`,
+          top: `${e.clientY - top}px`,
+        });
+      });
+
+      element.addEventListener("mouseleave", () => {
+        Object.assign(viewMore.style, {
+          transform: "translate(-50%, -100%) scale(0.5)",
+          opacity: "0",
+        });
+        element.style.cursor = "default";
+      });
+    });
   }
 
+  function animateText() {
+    const originalText = viewMore.innerHTML.trim();
+    viewMore.innerHTML = "";
+
+    originalText.split("").forEach((char, index) => {
+      let span = document.createElement("span");
+      span.textContent = char;
+      viewMore.appendChild(span);
+
+      span.style.animationDelay = `${index * 0.3}s`;
+    });
+  }
+
+  animateText();
   addHoverEffect(".project-card"); // Apply to project cards
   addHoverEffect(".thumbnail.linked"); // Apply to linked thumbnails
 }
@@ -60,10 +68,9 @@ function handleViewMore() {
 function initializeViewMore() {
   const viewMore = document.querySelector("#view-more");
   if (viewMore) {
-      console.log("initializeViewMore: #view-more found. Running handleViewMore().");
-      handleViewMore();
+    handleViewMore();
   } else {
-      console.log("initializeViewMore: #view-more not found.");
+    console.error("initializeViewMore: #view-more not found.");
   }
 }
 
@@ -75,7 +82,4 @@ const observer = new MutationObserver(() => {
 
 observer.observe(document.body, { childList: true, subtree: true });
 
-console.log("MutationObserver started. Watching for DOM changes...");
-
-// Run on initial load
 initializeViewMore();
