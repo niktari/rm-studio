@@ -70,10 +70,12 @@ function updateFontSize() {
   const containerWidth = window.innerWidth;
   const textWidth = hiddenTextEl.scrollWidth;
 
-  const scaleFactor = Math.min(containerHeight / textHeight, containerWidth / textWidth);
+  const scaleFactor = Math.min(
+    containerHeight / textHeight,
+    containerWidth / textWidth
+  );
   hiddenTextEl.style.transform = `scale(${scaleFactor.toFixed(2)})`;
 }
-
 
 // CURSOR
 const cursor = document.querySelector(".custom-cursor");
@@ -110,6 +112,14 @@ document.addEventListener("mousedown", () => {
   disppearCursor();
 });
 
+document.addEventListener("mouseleave", () => {
+  disppearCursor();
+});
+
+document.addEventListen("mouseout", () => {
+  disppearCursor();
+});
+
 disppearCursor();
 
 function disppearCursor() {
@@ -120,17 +130,15 @@ function disppearCursor() {
 (function() {
   const classes = document.body.classList;
   let timer = 0;
-  window.addEventListener('resize', function () {
-      if (timer) {
-          clearTimeout(timer);
-          timer = null;
-      }
-      else
-          classes.add('stop-transitions');
+  window.addEventListener("resize", function() {
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    } else classes.add("stop-transitions");
 
-      timer = setTimeout(() => {
-          classes.remove('stop-transitions');
-          timer = null;
-      }, 100);
+    timer = setTimeout(() => {
+      classes.remove("stop-transitions");
+      timer = null;
+    }, 100);
   });
 })();
