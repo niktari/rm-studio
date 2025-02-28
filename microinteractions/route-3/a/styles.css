@@ -9,6 +9,7 @@ body {
     height: 100vh;
     font-family: "RM-Sans-Mono";
     overflow-y: hidden;
+    z-index: -999;
 }
 
 #container {
@@ -26,6 +27,5 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: -999;
     overflow-y: hidden;
 }
