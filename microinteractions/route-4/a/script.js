@@ -23,7 +23,7 @@ function handleHoverEffect(selectors) {
 
   elements.forEach(el => {
     el.addEventListener('mouseenter', () => {
-      viewMore.style.transform = "translate(-50%, -50%) scale(1)";
+      viewMore.style.transform = "translate(-50%, -100%) scale(1)";
       viewMore.style.opacity = "1";
       el.style.cursor = "pointer";
     });
