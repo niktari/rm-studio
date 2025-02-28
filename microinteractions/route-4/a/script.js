@@ -1,4 +1,5 @@
-const cursor = document.querySelector(".custom-cursor");
+const cursor = document.querySelector("#custom-cursor");
+const selectDivClass = document.querySelectorAll(".project-card");
 let timeout;
 
 function animateText() {
@@ -17,7 +18,7 @@ function animateText() {
 animateText();
 
 // Show cursor only on hover of viewmore elements
-document.querySelectorAll('.viewmore').forEach(el => {
+selectDivClass.forEach(el => {
   el.addEventListener('mouseenter', () => {
     cursor.style.transform = "translate(-50%, -50%) scale(1)";
     cursor.style.opacity = "1";
