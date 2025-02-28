@@ -19,7 +19,6 @@
     mix-blend-mode: difference;
     filter: invert(1);
     color: black;
-    font-size: 32px;
     transform: translate(-50%, -100%);
     white-space: nowrap;
     letter-spacing: 0.1em;
@@ -30,6 +29,7 @@
 #view-more span {
     font-family: "RM-Blackletter-Mono";
     display: inline-block;
+    font-size: 32px;
     animation: changeFont 3s ease-in-out infinite alternate, waveMotion 3s ease-in-out infinite alternate;
 }
 
