@@ -12,61 +12,7 @@
         url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 12px;
-    height: 100vh;
-    font-family: "RM-Sans-Mono";
-    background-color: white;
-}
-
-section {
-    display: flex;
-    gap: 24px;
-    padding: 12px 0;
-    line-height: 1.6;
-    font-size: 11px;
-    border-top: 1px solid #000000;
-    cursor: default;
-}
-
-section div {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    flex: 1 1 0px;
-}
-
-ul {
-    list-style-type: square;
-    padding-inline-start: 12px;
-}
-
-img {
-    width: 100%;
-}
-
-a {
-    color: #000000;
-}
-
-a:hover {
-    font-family: "RM-Blackletter-Mono";
-}
-
-.links {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-
-.blackletter {
-    font-family: "RM-Blackletter-Mono";
-}
-
-.custom-cursor {
+#custom-cursor {
     position: fixed;
     pointer-events: none;
     z-index: 1000;
@@ -81,7 +27,7 @@ a:hover {
     transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 }
 
-.custom-cursor span {
+#custom-cursor span {
     font-family: "RM-Blackletter-Mono";
     display: inline-block;
     animation: changeFont 3s ease-in-out infinite alternate, waveMotion 3s ease-in-out infinite alternate;
