@@ -12,6 +12,10 @@
     url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
 }
 
+body.stop-transitions * {
+  transition: none !important;
+}
+
 html, body{
   overflow: hidden;
   cursor: pointer;
@@ -20,37 +24,40 @@ html, body{
 
 #container {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   overflow: hidden;
-  text-align: center;
-  font-size: calc(150vw / 3);
-  transition: all .5s, font-size 0s ease-in-out;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  align-content: center;
-  /* cursor: pointer; */
-  gap: 1vw;
-  /* outline: 1px solid red; */
-}
-
-#mainText{
-  width: 100%;
+  align-items: flex-start;
 }
 
 #hiddenText{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1vw;
+  gap: 0;
+  font-size: calc(1.5vw / 3);
+  transform: scale(100);
+  transform-origin: top center;
+  width: max-content;
+  transition: 0.1s;
 }
 
-#hiddenText span{
-  width: 100%;
+#hiddenText.no-transition{
+  transition: none;
+}
+
+#hiddenText.onlyRandM{
+  position: absolute;
+  top: 50%;
+  transform: scale(100) translate(0%, -50%);
+  transition: none;
+}
+
+#hiddenText div{
+  width: max-content;
+  text-align: center;
 }
 
 .blackletter{
@@ -77,6 +84,7 @@ html, body{
   transform: translate(-50%, -50%);
   white-space: nowrap;
   letter-spacing: 0.1em;
+  opacity: 0;
   transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 }
 

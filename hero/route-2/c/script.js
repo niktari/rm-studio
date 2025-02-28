@@ -1,49 +1,78 @@
 const textContainer = document.getElementById("container");
 const hiddenTextEl = document.getElementById("hiddenText");
 
-// Break full text into an array
-const fullTextArray = [
-  "is",
-  "the",
-  "Design",
-  "Practice",
-  "of",
-  "Ryan Bugden",
-  "&",
-  "Michelle Ando",
-];
-
-const fontSizeArr = [
-  "calc(150vw / 3)",
-  "calc(80vw / 3)",
-  "calc(55vw / 3)",
-  "calc(40vw / 3)",
-  "calc(30vw / 3)",
-  "calc(25vw / 3)",
-  "calc(20vw / 3)",
-  "calc(18vw / 3)",
-  "calc(15vw / 3)",
+const fullTextArrayStyles = [
+  { content: "is", style: "sans" },
+  { content: "the", style: "blackletter" },
+  { content: "design", style: "sans" },
+  { content: "practice", style: "sans" },
+  { content: "of", style: "sans" },
+  { content: "Ryan Bugden", style: "blackletter" },
+  { content: "&", style: "blackletter" },
+  { content: "Michelle Ando", style: "blackletter" },
+  { content: "based", style: "sans" },
+  { content: "in", style: "sans" },
+  { content: "Bushwick", style: "blackletter" },
+  { content: "Brooklyn", style: "blackletter" },
+  { content: "New York", style: "sans" },
+  { content: "&", style: "blackletter" },
+  { content: "specializing", style: "blackletter" },
+  { content: "in", style: "sans" },
+  { content: "branding", style: "blackletter" },
+  { content: "identity systems", style: "sans" },
+  { content: "print", style: "blackletter" },
+  { content: "packaging", style: "sans" },
+  { content: "books", style: "blackletter" },
+  { content: "art direction", style: "sans" },
+  { content: "&", style: "sans" },
+  { content: "typeface design.", style: "blackletter" },
+  { content: "Thanks", style: "sans" },
+  { content: "for", style: "blackletter" },
+  { content: "stopping", style: "sans" },
+  { content: "by", style: "blackletter" },
+  { content: "&", style: "blackletter" },
+  { content: "clicking", style: "sans" },
+  { content: "this", style: "blackletter" },
+  { content: "many", style: "sans" },
+  { content: "times", style: "blackletter" },
+  { content: "<3", style: "sans" },
 ];
 
 let index = 0;
 
 textContainer.addEventListener("click", () => {
-  if (index < fullTextArray.length) {
-    const font = index % 2 === 0 ? "sans" : "blackletter";
-    hiddenTextEl.innerHTML += `<span class="${font}">${fullTextArray[index]}</span>`;
+  if (index < fullTextArrayStyles.length) {
+    const currentText = fullTextArrayStyles[index];
+    const { content, style } = currentText;
+    hiddenTextEl.classList.remove("onlyRandM");
+
+    setTimeout(() => {
+      hiddenTextEl.classList.remove("no-transition");
+    }, 50);
+
+    hiddenTextEl.innerHTML += `<div class="${style}">${content}</div>`;
     index++;
     updateFontSize();
   } else {
     index = 0;
-    hiddenTextEl.innerHTML = "";
-    updateFontSize();
+    hiddenTextEl.classList.add("onlyRandM");
+    hiddenTextEl.classList.add("no-transition");
+    hiddenTextEl.innerHTML = '<div class="blackletter">R&M</div>';
+    hiddenTextEl.style.removeProperty("transform");
   }
 });
 
 function updateFontSize() {
-  textContainer.style.fontSize = fontSizeArr[index];
+  const containerHeight = window.innerHeight;
+  const textHeight = hiddenTextEl.scrollHeight;
+  const containerWidth = window.innerWidth;
+  const textWidth = hiddenTextEl.scrollWidth;
+
+  const scaleFactor = Math.min(containerHeight / textHeight, containerWidth / textWidth);
+  hiddenTextEl.style.transform = `scale(${scaleFactor.toFixed(2)})`;
 }
 
+// CURSOR
 const cursor = document.querySelector(".custom-cursor");
 let timeout;
 
@@ -85,3 +114,21 @@ function disppearCursor() {
   cursor.style.transform = "translate(-50%, -50%) scale(0.5)";
   cursor.style.opacity = "0";
 }
+
+(function() {
+  const classes = document.body.classList;
+  let timer = 0;
+  window.addEventListener('resize', function () {
+      if (timer) {
+          clearTimeout(timer);
+          timer = null;
+      }
+      else
+          classes.add('stop-transitions');
+
+      timer = setTimeout(() => {
+          classes.remove('stop-transitions');
+          timer = null;
+      }, 100);
+  });
+})();
