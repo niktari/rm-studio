@@ -1,4 +1,7 @@
-const viewMore = document.querySelector("#view-more");
+if (!window.viewMore) {
+  const viewMore = document.querySelector("#view-more");
+  window.viewMore = viewMore;
+}
 const parentContainer = document.querySelector("#view-more").parentElement;
 
 // Function to animate the text inside the viewMore button
