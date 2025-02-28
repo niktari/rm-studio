@@ -19,8 +19,8 @@
     mix-blend-mode: difference;
     filter: invert(1);
     color: black;
-    font-size: 2rem;
-    transform: translate(-50%, -50%);
+    font-size: 32px;
+    transform: translate(-50%, -100%);
     white-space: nowrap;
     letter-spacing: 0.1em;
     opacity: 0;
