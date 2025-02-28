@@ -58,6 +58,7 @@ html, body{
 #hiddenText div{
   width: max-content;
   text-align: center;
+  line-height: 1.2;
 }
 
 .blackletter{
@@ -67,6 +68,14 @@ html, body{
 .sans{
   font-family: "RM-Sans-Mono";
 }
+
+/* .blackletter:hover {
+  font-family: "RM-Sans-Mono";
+}
+
+.sans:hover {
+  font-family: "RM-Blackletter-Mono";
+} */
 
 #container ::selection {
   background: transparent;
@@ -101,6 +110,6 @@ html, body{
 
 @keyframes waveMotion {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-5px); }
   100% { transform: translateY(0px); }
 }
