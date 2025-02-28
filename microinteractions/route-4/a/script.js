@@ -42,4 +42,4 @@ function handleHoverEffect(selectors) {
 }
 
 handleHoverEffect('.project-card'); // For project cards
-handleHoverEffect('media-item.thumbnail.linked');
+handleHoverEffect('.thumbnail.linked');
