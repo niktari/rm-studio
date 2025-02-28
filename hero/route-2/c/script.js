@@ -116,7 +116,7 @@ document.addEventListener("mouseleave", () => {
   disppearCursor();
 });
 
-document.addEventListen("mouseout", () => {
+document.addEventListener("mouseout", () => {
   disppearCursor();
 });
 
