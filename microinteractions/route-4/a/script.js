@@ -10,7 +10,7 @@ function handleViewMore() {
     document.querySelectorAll(selector).forEach((el) => {
       el.addEventListener("mouseenter", () => {
         Object.assign(viewMore.style, {
-          transform: "translate(-50%, -100%)",
+          transform: "translate(-50%, -50%)",
           opacity: "1",
         });
         el.style.cursor = "pointer";
@@ -24,7 +24,7 @@ function handleViewMore() {
       });
       el.addEventListener("mouseleave", () => {
         Object.assign(viewMore.style, {
-          transform: "translate(-50%, -100%)",
+          transform: "translate(-50%, -50%)",
           opacity: "0",
         });
         el.style.cursor = "default";
