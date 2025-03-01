@@ -23,14 +23,14 @@
     white-space: nowrap;
     /* letter-spacing: 0.1em; */
     opacity: 0;
-    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
 #view-more span {
     font-family: "RM-Blackletter-Mono";
     display: inline-block;
     font-size: 32px!important;
-    animation: changeFont 3s ease-in-out infinite alternate, waveMotion 3s ease-in-out infinite alternate;
+    animation: changeFont 3s ease-in-out infinite alternate;
 }
 
 @keyframes changeFont {
@@ -40,19 +40,5 @@
 
     100% {
         font-family: "RM-Sans-Mono";
-    }
-}
-
-@keyframes waveMotion {
-    0% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-3px);
-    }
-
-    100% {
-        transform: translateY(0px);
     }
 }
