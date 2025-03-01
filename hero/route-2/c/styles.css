@@ -19,7 +19,7 @@ body.stop-transitions * {
 html,
 body {
   overflow: hidden;
-  cursor: pointer;
+  cursor: none;
   background: white;
 }
 
@@ -62,7 +62,7 @@ body {
   /* height: auto; */
   /* width: max-content; */
   text-align: center;
-  /* line-height: 1.2; */
+  line-height: 1.1;
 }
 
 .blackletter {
@@ -98,13 +98,13 @@ body {
   white-space: nowrap;
   /* letter-spacing: 0.1em; */
   opacity: 0;
-  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
 .custom-cursor span {
   font-family: "RM-Blackletter-Mono";
   display: inline-block;
-  animation: changeFont 3s ease-in-out infinite alternate, waveMotion 3s ease-in-out infinite alternate;
+  animation: changeFont 3s ease-in-out infinite alternate;
 }
 
 @keyframes changeFont {
@@ -114,19 +114,5 @@ body {
 
   100% {
     font-family: "RM-Sans-Mono";
-  }
-}
-
-@keyframes waveMotion {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-3px);
-  }
-
-  100% {
-    transform: translateY(0px);
   }
 }

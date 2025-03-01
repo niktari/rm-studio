@@ -3,6 +3,8 @@ const hiddenTextEl = document.getElementById("hiddenText");
 
 let textDivs;
 
+let showCursor = true;
+
 const fullTextArrayStyles = [
   { content: "is", style: "sans" },
   { content: "the", style: "blackletter" },
@@ -41,6 +43,8 @@ const fullTextArrayStyles = [
 ];
 
 let index = 0;
+const cursor = document.querySelector(".custom-cursor");
+let timeout;
 
 textContainer.addEventListener("click", () => {
   if (index < fullTextArrayStyles.length) {
@@ -62,6 +66,15 @@ textContainer.addEventListener("click", () => {
     hiddenTextEl.innerHTML = '<div class="blackletter">R&M</div>';
     hiddenTextEl.style.removeProperty("transform");
   }
+
+  if(index == 0) {
+    showCursor = true;
+  } else {
+    showCursor = false;
+  }
+
+  handleCursor();
+
 });
 
 function updateFontSize() {
@@ -77,12 +90,30 @@ function updateFontSize() {
   hiddenTextEl.style.transform = `scale(${scaleFactor.toFixed(2)})`;
 }
 
+
 // CURSOR
-const cursor = document.querySelector(".custom-cursor");
-let timeout;
+function initCursor() {
+
+  document.onmousemove = function(e) {
+
+    const { width, height } = cursor.getBoundingClientRect();
+
+    let mappedLeft = map(e.clientX, 0, window.innerWidth, width / 2, window.innerWidth - width / 2);
+    let mappedTop = map(e.clientY, 0, window.innerHeight, height / 2, window.innerHeight - height / 2);
+    
+
+    cursor.style.opacity = "1";
+    textContainer.style.cursor = "none";
+    cursor.style.left = `${mappedLeft}px`;
+    cursor.style.top = `${mappedTop}px`;
+    cursor.style.transform = "translate(-50%, -50%)";
+
+  }
+  
+}
+
 
 function animateText() {
-  // const originalText = cursor.innerHTML.trim();
 
   const originalText = cursor.textContent;
   cursor.innerHTML = "";
@@ -110,13 +141,13 @@ function animateText() {
     let letterSpans = document.querySelectorAll(".letter");
 
     letterSpans.forEach((letterSpan, index) => {
-      letterSpan.style.animationDelay = `${index * 0.3}s`;
+      letterSpan.style.animationDelay = `${0.3 * index}s`;
     })
-
 
   })
 
   // MS Original Code
+    // const originalText = cursor.innerHTML.trim();
   // originalText.split("").forEach((char, index) => {
   //   let span = document.createElement("span");
   //   span.textContent = char;
@@ -129,21 +160,26 @@ function animateText() {
 
 animateText();
 
-document.addEventListener("mousemove", (e) => {
-  cursor.style.left = `${e.clientX}px`;
-  cursor.style.top = `${e.clientY}px`;
-  cursor.style.transform = "translate(-50%, -50%) scale(1)";
-  cursor.style.opacity = "1";
-
-  clearTimeout(timeout);
-  timeout = setTimeout(() => {
+function handleCursor() {
+  if (showCursor) {
+    initCursor();
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      disppearCursor();
+    }, 10000);
+  } else {
     disppearCursor();
-  }, 10000);
-});
+    textContainer.style.cursor = "pointer";
+    document.onmousemove = null;
+  }
+}
 
-document.addEventListener("mousedown", () => {
-  disppearCursor();
-});
+handleCursor();
+
+
+// document.addEventListener("mousedown", () => {
+//   disppearCursor();
+// });
 
 document.addEventListener("mouseleave", () => {
   disppearCursor();
@@ -156,7 +192,6 @@ document.addEventListener("mouseout", () => {
 disppearCursor();
 
 function disppearCursor() {
-  cursor.style.transform = "translate(-50%, -50%) scale(0.5)";
   cursor.style.opacity = "0";
 }
 
@@ -175,3 +210,11 @@ function disppearCursor() {
     }, 100);
   });
 })();
+
+
+
+
+
+function map(value, low1, high1, low2, high2) {
+  return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+}
