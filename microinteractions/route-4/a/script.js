@@ -13,7 +13,7 @@ function handleViewMore() {
           transform: "translate(-50%, -50%)",
           opacity: "1",
         });
-        el.style.cursor = "pointer";
+        el.style.cursor = "none";
       });
       el.addEventListener("mousemove", (e) => {
         const { left, top } = parent.getBoundingClientRect();
@@ -78,7 +78,7 @@ function handleViewMore() {
     // });
   }
 
-  addHoverEffect(".project-card");
+  addHoverEffect(".project-card .linked");
   addHoverEffect(".thumbnail.linked");
 
   observeParent(parent);
