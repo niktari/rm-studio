@@ -40,19 +40,21 @@ const fullTextArrayStyles = [
 ];
 
 let index = 0;
-const totalLines = fullTextArrayStyles.length;
-const lineHeight = 1.1; 
-
 let baseFontSize = 90;
-hiddenTextEl.style.fontSize = `${baseFontSize}vh`;
+const totalLines = fullTextArrayStyles.length;
+
+function initStyles(){
+  hiddenTextEl.style.fontSize = `${baseFontSize}vh`;
+
+  let containerProps = hiddenTextEl.getBoundingClientRect();
+  let { width, height } = containerProps;
+
+  hiddenTextEl.style.top = `calc(50% - ${height}px / 2)`;
+}
+
+initStyles();
 
 
-let containerProps = hiddenTextEl.getBoundingClientRect();
-let { width, height } = containerProps;
-
-console.log(containerProps);
-
-hiddenTextEl.style.top = `calc(50% - ${height}px / 2)`;
 
 textContainer.addEventListener("click", () => {
   if (index < fullTextArrayStyles.length) {
@@ -83,6 +85,13 @@ function updateFontSize() {
   const scaledFontSize = baseFontSize / (index + 1);
   hiddenTextEl.style.fontSize = `${scaledFontSize}vh`;
 }
+
+
+
+
+
+
+
 
 // CURSOR
 const cursor = document.querySelector(".custom-cursor");
