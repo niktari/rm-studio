@@ -1,8 +1,7 @@
 const textContainer = document.getElementById("container");
 const hiddenTextEl = document.getElementById("hiddenText");
 
-let textDivs;
-
+// Break full text into an array
 const fullTextArrayStyles = [
   { content: "is", style: "sans" },
   { content: "the", style: "blackletter" },
@@ -41,48 +40,82 @@ const fullTextArrayStyles = [
 ];
 
 let index = 0;
+const totalLines = fullTextArrayStyles.length;
+const lineHeight = 1.1; 
+
+let baseFontSize = 90;
+hiddenTextEl.style.fontSize = `${baseFontSize}vh`;
+
+
+let containerProps = hiddenTextEl.getBoundingClientRect();
+let { width, height } = containerProps;
+
+console.log(containerProps);
+
+hiddenTextEl.style.top = `calc(50% - ${height}px / 2)`;
 
 textContainer.addEventListener("click", () => {
   if (index < fullTextArrayStyles.length) {
+    hiddenTextEl.style.top = 0;
     const currentText = fullTextArrayStyles[index];
     const { content, style } = currentText;
-    hiddenTextEl.classList.remove("onlyRandM");
-
-    setTimeout(() => {
-      hiddenTextEl.classList.remove("no-transition");
-    }, 50);
-
-    hiddenTextEl.innerHTML += `<div class="${style}">${content}</div>`;
+    hiddenTextEl.innerHTML += `<span class="${style}">${content}</span>`;
     index++;
     updateFontSize();
   } else {
+    hiddenTextEl.style.top = `calc(50% - ${height}px / 2)`;
     index = 0;
-    hiddenTextEl.classList.add("onlyRandM");
-    hiddenTextEl.classList.add("no-transition");
-    hiddenTextEl.innerHTML = '<div class="blackletter">R&M</div>';
-    hiddenTextEl.style.removeProperty("transform");
+    hiddenTextEl.innerHTML = '<span class="blackletter">R&M</span>';
+    hiddenTextEl.style.fontSize = `${baseFontSize}vh`;
   }
+
+
+  if(index == 0) {
+    showCursor = true;
+  } else {
+    showCursor = false;
+  }
+
+  handleCursor();
 });
 
 function updateFontSize() {
-  const containerHeight = window.innerHeight;
-  const textHeight = hiddenTextEl.scrollHeight;
-  const containerWidth = window.innerWidth;
-  const textWidth = hiddenTextEl.scrollWidth;
-
-  const scaleFactor = Math.min(
-    containerHeight / textHeight,
-    containerWidth / textWidth
-  );
-  hiddenTextEl.style.transform = `scale(${scaleFactor.toFixed(2)})`;
+  const scaledFontSize = baseFontSize / (index + 1);
+  hiddenTextEl.style.fontSize = `${scaledFontSize}vh`;
 }
 
 // CURSOR
 const cursor = document.querySelector(".custom-cursor");
+let showCursor = true;
 let timeout;
 
+function initCursor() {
+
+  document.onmousemove = function(e) {
+
+    const { width, height } = cursor.getBoundingClientRect();
+
+    let mappedLeft = map(e.clientX, 0, window.innerWidth, width / 2, window.innerWidth - width / 2);
+    let mappedTop = map(e.clientY, 0, window.innerHeight, height / 2, window.innerHeight - height / 2);
+    
+
+    cursor.style.opacity = "1";
+    textContainer.style.cursor = "none";
+    cursor.style.left = `${mappedLeft}px`;
+    cursor.style.top = `${mappedTop}px`;
+    cursor.style.transform = "translate(-50%, -50%)";
+
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      disppearCursor();
+    }, 10000);
+
+  }
+  
+}
+
+
 function animateText() {
-  // const originalText = cursor.innerHTML.trim();
 
   const originalText = cursor.textContent;
   cursor.innerHTML = "";
@@ -110,36 +143,31 @@ function animateText() {
     let letterSpans = document.querySelectorAll(".letter");
 
     letterSpans.forEach((letterSpan, index) => {
-      letterSpan.style.animationDelay = `${index * 0.3}s`;
+      letterSpan.style.animationDelay = `${0.3 * index}s`;
     })
-
 
   })
 
-  // MS Original Code
-  // originalText.split("").forEach((char, index) => {
-  //   let span = document.createElement("span");
-  //   span.textContent = char;
-
-  //   cursor.appendChild(span);
-
-  //   span.style.animationDelay = `${index * 0.3}s`;
-  // });
 }
 
 animateText();
 
-document.addEventListener("mousemove", (e) => {
-  cursor.style.left = `${e.clientX}px`;
-  cursor.style.top = `${e.clientY}px`;
-  cursor.style.transform = "translate(-50%, -50%) scale(1)";
-  cursor.style.opacity = "1";
-
-  clearTimeout(timeout);
-  timeout = setTimeout(() => {
+function handleCursor() {
+  if (showCursor) {
+    initCursor();
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      disppearCursor();
+    }, 10000);
+  } else {
     disppearCursor();
-  }, 10000);
-});
+    textContainer.style.cursor = "pointer";
+    document.onmousemove = null;
+  }
+}
+
+handleCursor();
+
 
 document.addEventListener("mousedown", () => {
   disppearCursor();
@@ -156,22 +184,11 @@ document.addEventListener("mouseout", () => {
 disppearCursor();
 
 function disppearCursor() {
-  cursor.style.transform = "translate(-50%, -50%) scale(0.5)";
   cursor.style.opacity = "0";
 }
 
-(function() {
-  const classes = document.body.classList;
-  let timer = 0;
-  window.addEventListener("resize", function() {
-    if (timer) {
-      clearTimeout(timer);
-      timer = null;
-    } else classes.add("stop-transitions");
 
-    timer = setTimeout(() => {
-      classes.remove("stop-transitions");
-      timer = null;
-    }, 100);
-  });
-})();
+
+function map(value, low1, high1, low2, high2) {
+  return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+}
