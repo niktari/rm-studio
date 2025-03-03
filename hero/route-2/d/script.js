@@ -41,14 +41,13 @@ const fullTextArrayStyles = [
 
 let index = 0;
 let baseFontSize = 90;
+let containerProps = hiddenTextEl.getBoundingClientRect();
+let { width, height } = containerProps;
+
 const totalLines = fullTextArrayStyles.length;
 
 function initStyles(){
   hiddenTextEl.style.fontSize = `${baseFontSize}vh`;
-
-  let containerProps = hiddenTextEl.getBoundingClientRect();
-  let { width, height } = containerProps;
-
   hiddenTextEl.style.top = `calc(50% - ${height}px / 2)`;
 }
 
