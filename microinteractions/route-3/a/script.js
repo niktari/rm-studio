@@ -15,8 +15,12 @@ class Ball {
     this.el.innerHTML = content[index % 3];
     container.appendChild(this.el);
 
-    this.x = Math.random() * (container.clientWidth - ballSize);
-    this.y = Math.random() * (container.clientHeight - ballSize);
+    this.x =
+      Math.random() *
+      ((container?.clientWidth || window.innerWidth) - ballSize);
+    this.y =
+      Math.random() *
+      ((container?.clientHeight || window.innerHeight) - ballSize);
     this.dx = speed;
     this.dy = speed;
     this.angle = 0;
@@ -29,19 +33,25 @@ class Ball {
     this.angle += speed / 8;
 
     if (this.x <= 0) {
-      this.x = 0;
+      this.x = 1;
       this.dx *= -1;
     }
     if (this.x + ballSize >= container.clientWidth) {
+      this.x = container.clientWidth - ballSize - 1;
       this.dx *= -1;
     }
     if (this.y <= 0) {
-      this.y = 0;
+      this.y = 1;
       this.dy *= -1;
     }
     if (this.y + ballSize >= container.clientHeight) {
+      this.y = container.clientHeight - ballSize - 1;
       this.dy *= -1;
     }
+
+    const minSpeed = 0.5;
+    if (Math.abs(this.dx) < minSpeed) this.dx = minSpeed * Math.sign(this.dx);
+    if (Math.abs(this.dy) < minSpeed) this.dy = minSpeed * Math.sign(this.dy);
 
     this.el.style.transform = `translate(${this.x}px, ${this.y}px) rotate(${this.angle}deg)`;
   }
@@ -58,28 +68,32 @@ function checkCollisions() {
       let distance = Math.sqrt(dx * dx + dy * dy);
 
       if (distance < ballSize) {
-        [ball1.dx, ball2.dx] = [ball2.dx, ball1.dx];
-        [ball1.dy, ball2.dy] = [ball2.dy, ball1.dy];
-
         let overlap = ballSize - distance;
         let angle = Math.atan2(dy, dx);
-        ball1.x += Math.cos(angle) * (overlap / 2);
-        ball1.y += Math.sin(angle) * (overlap / 2);
-        ball2.x -= Math.cos(angle) * (overlap / 2);
-        ball2.y -= Math.sin(angle) * (overlap / 2);
+
+        let separationX = Math.cos(angle) * (overlap / 2);
+        let separationY = Math.sin(angle) * (overlap / 2);
+
+        ball1.x += separationX;
+        ball1.y += separationY;
+        ball2.x -= separationX;
+        ball2.y -= separationY;
+
+        // Swap velocities
+        [ball1.dx, ball2.dx] = [ball2.dx, ball1.dx];
+        [ball1.dy, ball2.dy] = [ball2.dy, ball1.dy];
       }
     }
   }
 }
 
 function addNewBall() {
-  for(let i = 0; i < maxBallNum; i++) {
+  for (let i = 0; i < maxBallNum; i++) {
     balls.push(new Ball(i));
   }
 }
 
 addNewBall();
-
 
 function animate() {
   balls.forEach((ball) => ball.move());
@@ -88,46 +102,3 @@ function animate() {
 }
 
 animate();
-
-// function wrapWordsInDivs() {
-//   const allText = document.querySelectorAll(".effect");
-
-
-
-//   for(let text of allText) {
-//     const content = text.textContent;
-//     const words = content.split(' ');
-  
-//     const wordsWrapped = words.map(word => `<div class="effect--div">${word}</div>`).join(' ');
-  
-//     text.innerHTML = wordsWrapped;
-//   }
-
-// }
-
-// wrapWordsInDivs();
-
-// let wordsDiv = document.querySelectorAll(".effect--div");
-
-// function applyTextEffect() {
-//   wordsDiv.forEach(word => {
-//     word.onmouseover = function() {
-//       if(word.classList.contains("blackletter")) {
-//           word.classList.remove("blackletter")
-//             } else {
-//               word.classList.add("blackletter")
-//       }
-
-          
-
-//       setTimeout(()=> {
-//         if(word.classList.contains("blackletter")) {
-//           word.classList.remove("blackletter")
-//           }
-
-//       }, 1000)
-//     }
-//   })
-// }
-
-// applyTextEffect();

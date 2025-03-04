@@ -1,0 +1,70 @@
+<div class="footer">
+    <style>
+        #custom-footer{
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            height: 100%;
+            z-index: -9999;
+            border: 1px solid red;
+        }
+
+        [id="T1050771008"].page {
+          background-color: #ffffff;
+          min-height: auto;
+          justify-content: center;
+        }
+
+        .footer {
+          margin-top: 40px;
+          position: relative;
+          height: 20vh;
+        }
+        /*
+        .email-container {
+          position: relative;
+          display: inline-block;
+        }
+
+        .tooltip {
+          position: absolute;
+          background: black;
+          color: white;
+          padding: 5px 10px;
+          font-size: 12px;
+          bottom: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          opacity: 0;
+          transition: opacity 0.2s;
+          white-space: nowrap;
+        }
+
+        .email-container:hover .tooltip {
+          opacity: 1;
+        } */
+    </style>
+    <hr>
+    <column-set gutter="2" mobile-stack="false"><column-unit slot="0"><span
+                class="caption">
+                Write us at
+                <a href="mailto:hi@r-and-m.co" rel="mailto">hi@r-and-m.co</a>
+                <br>
+                Subscribe to our <a href="https://buttondown.com/r_and_m"
+                    target="_blank">newsletter</a><br>Follow us on <a
+                    href="https://www.instagram.com/r_and_m.co/"
+                    target="_blank">Instagram</a>
+            </span></column-unit><column-unit slot="1">
+            <div class="footer" style="text-align: right; color: rgb(0, 0, 0);">
+                <span class="caption">
+                    © R&amp;M
+                    <digital-clock pad-day-of-month="true" pad-hour="true"
+                        pad-month="true" timezone="local" truncate-year="false"
+                        twentyfour-hour="true"
+                        value="{year}.{month}.{day-of-month} {hour}:{minute}:{second}"></digital-clock>
+                </span></div>
+        </column-unit></column-set>
+    &nbsp; <iframe id="custom-footer" src="index.html" border></iframe>
+</div>
