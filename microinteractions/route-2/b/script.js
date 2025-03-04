@@ -71,13 +71,12 @@ function checkCollisions() {
 }
 
 function addNewBall() {
-  for(let i = 0; i < maxBallNum; i++) {
+  for (let i = 0; i < maxBallNum; i++) {
     balls.push(new Ball(i));
   }
 }
 
 addNewBall();
-
 
 function animate() {
   balls.forEach((ball) => ball.move());

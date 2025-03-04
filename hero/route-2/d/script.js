@@ -46,14 +46,18 @@ let { width, height } = containerProps;
 
 const totalLines = fullTextArrayStyles.length;
 
-function initStyles(){
+function initStyles() {
+  containerProps = hiddenTextEl.getBoundingClientRect();
+  height = containerProps.height;
   hiddenTextEl.style.fontSize = `${baseFontSize}vh`;
   hiddenTextEl.style.top = `calc(50% - ${height}px / 2)`;
 }
 
 initStyles();
 
-
+window.onresize = () => {
+  initStyles();
+};
 
 textContainer.addEventListener("click", () => {
   if (index < fullTextArrayStyles.length) {
@@ -70,8 +74,7 @@ textContainer.addEventListener("click", () => {
     hiddenTextEl.style.fontSize = `${baseFontSize}vh`;
   }
 
-
-  if(index == 0) {
+  if (index == 0) {
     showCursor = true;
   } else {
     showCursor = false;
@@ -85,27 +88,29 @@ function updateFontSize() {
   hiddenTextEl.style.fontSize = `${scaledFontSize}vh`;
 }
 
-
-
-
-
-
-
-
 // CURSOR
 const cursor = document.querySelector(".custom-cursor");
 let showCursor = true;
 let timeout;
 
 function initCursor() {
-
-  document.onmousemove = function(e) {
-
+  document.onmousemove = function (e) {
     const { width, height } = cursor.getBoundingClientRect();
 
-    let mappedLeft = map(e.clientX, 0, window.innerWidth, width / 2, window.innerWidth - width / 2);
-    let mappedTop = map(e.clientY, 0, window.innerHeight, height / 2, window.innerHeight - height / 2);
-    
+    let mappedLeft = map(
+      e.clientX,
+      0,
+      window.innerWidth,
+      width / 2,
+      window.innerWidth - width / 2,
+    );
+    let mappedTop = map(
+      e.clientY,
+      0,
+      window.innerHeight,
+      height / 2,
+      window.innerHeight - height / 2,
+    );
 
     cursor.style.opacity = "1";
     textContainer.style.cursor = "none";
@@ -117,33 +122,29 @@ function initCursor() {
     timeout = setTimeout(() => {
       disppearCursor();
     }, 10000);
-
-  }
-  
+  };
 }
 
-
 function animateText() {
-
   const originalText = cursor.textContent;
   cursor.innerHTML = "";
+  const words = originalText.split(" ");
+  let wordWrapper = "";
 
-  let words = originalText.split(' ');
-
-  let wordWrapper = '';
-
-  wordWrapper = words.map(word => `<span class="word">${word}</span>`).join(`<span>&nbsp;</span>`);
+  wordWrapper = words
+    .map((word) => `<span class="word">${word}</span>`)
+    .join(`<span>&nbsp;</span>`);
 
   cursor.innerHTML = wordWrapper;
 
-  let wordSpans = document.querySelectorAll(".word");
+  const wordSpans = document.querySelectorAll(".word");
 
-  wordSpans.forEach(wordSpan => {
+  wordSpans.forEach((wordSpan) => {
     let text = wordSpan.innerText;
-    let letterWrapper = '';
+    let letterWrapper = "";
 
-    for(let i = 0; i < text.length; i++) {
-      letterWrapper += `<span class="letter">${text.charAt(i)}</span>`
+    for (let i = 0; i < text.length; i++) {
+      letterWrapper += `<span class="letter">${text.charAt(i)}</span>`;
     }
 
     wordSpan.innerHTML = letterWrapper;
@@ -152,10 +153,8 @@ function animateText() {
 
     letterSpans.forEach((letterSpan, index) => {
       letterSpan.style.animationDelay = `${0.3 * index}s`;
-    })
-
-  })
-
+    });
+  });
 }
 
 animateText();
@@ -176,7 +175,6 @@ function handleCursor() {
 
 handleCursor();
 
-
 document.addEventListener("mousedown", () => {
   disppearCursor();
 });
@@ -195,8 +193,6 @@ function disppearCursor() {
   cursor.style.opacity = "0";
 }
 
-
-
 function map(value, low1, high1, low2, high2) {
-  return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+  return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
 }

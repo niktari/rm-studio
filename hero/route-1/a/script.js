@@ -23,7 +23,8 @@ const createSketch = (transitionDirection, containerId, letters) => {
       breakPointCalc();
       const cnv = p.createCanvas(
         p.min(p.windowWidth, maxWindowSize) / canvasScaler,
-        (p.min(p.windowWidth, maxWindowSize) / canvasScaler) * (imgM.height / imgM.width)
+        (p.min(p.windowWidth, maxWindowSize) / canvasScaler) *
+          (imgM.height / imgM.width),
       );
       cnv.parent(containerId);
 
@@ -76,7 +77,10 @@ const createSketch = (transitionDirection, containerId, letters) => {
           const b = myImg.pixels[index + 2];
           const brightnessVal = (r + g + b) / 3;
           const mappedBrightnessVal = p.constrain(
-            p.map(brightnessVal, 0, 255, 0, 265), 0, 255);
+            p.map(brightnessVal, 0, 255, 0, 265),
+            0,
+            255,
+          );
           const radius = p.map(mappedBrightnessVal, 255, 0, 0, 10);
           arr[row][col] = radius;
           col++;
@@ -99,23 +103,22 @@ const createSketch = (transitionDirection, containerId, letters) => {
                 ? pixelR[y][x]
                 : pixelM[y][x]
               : transitionDirection === "RtoM"
-              ? pixelM[y][x]
-              : pixelR[y][x];
+                ? pixelM[y][x]
+                : pixelR[y][x];
 
             curPixel[y][x] = p.lerp(curPixel[y][x], finalValue, 0.1);
             p.circle(
-              (x * p.height) / gridNum * 0.9,
-              (y * p.height) / gridNum * 0.9,
-              curPixel[y][x]
+              ((x * p.height) / gridNum) * 0.9,
+              ((y * p.height) / gridNum) * 0.9,
+              curPixel[y][x],
             );
-          } else{
+          } else {
             p.circle(
-              (x * p.height) / gridNum * 0.9,
-              (y * p.height) / gridNum * 0.9,
-              curPixel[y][x]
+              ((x * p.height) / gridNum) * 0.9,
+              ((y * p.height) / gridNum) * 0.9,
+              curPixel[y][x],
             );
           }
-
         }
       }
       p.pop();
@@ -125,7 +128,8 @@ const createSketch = (transitionDirection, containerId, letters) => {
       breakPointCalc();
       p.resizeCanvas(
         p.min(p.windowWidth, maxWindowSize) / canvasScaler,
-        (p.min(p.windowWidth, maxWindowSize) / canvasScaler) * (imgM.height / imgM.width)
+        (p.min(p.windowWidth, maxWindowSize) / canvasScaler) *
+          (imgM.height / imgM.width),
       );
       calculateGrid();
     };

@@ -1,44 +1,50 @@
 @font-face {
-    font-family: "RM-Blackletter-Mono";
-    src:
-        url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
-        url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
+  font-family: "RM-Blackletter-Mono";
+  src:
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff")
+      format("woff"),
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2")
+      format("woff2");
 }
 
 @font-face {
-    font-family: "RM-Sans-Mono";
-    src:
-        url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff") format("woff"),
-        url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
+  font-family: "RM-Sans-Mono";
+  src:
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff")
+      format("woff"),
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2")
+      format("woff2");
 }
 
 #view-more {
-    position: fixed;
-    pointer-events: none;
-    z-index: 1000;
-    mix-blend-mode: difference;
-    filter: invert(1);
-    color: black;
-    transform: translate(-50%, -50%);
-    white-space: nowrap;
-    /* letter-spacing: 0.1em; */
-    opacity: 0;
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  mix-blend-mode: difference;
+  filter: invert(1);
+  color: black;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  /* letter-spacing: 0.1em; */
+  opacity: 0;
+  transition:
+    transform 0.3s ease-out,
+    opacity 0.3s ease-out;
 }
 
 #view-more span {
-    font-family: "RM-Blackletter-Mono";
-    display: inline-block;
-    font-size: 32px!important;
-    animation: changeFont 3s ease-in-out infinite alternate;
+  font-family: "RM-Blackletter-Mono";
+  display: inline-block;
+  font-size: 32px !important;
+  animation: changeFont 3s ease-in-out infinite alternate;
 }
 
 @keyframes changeFont {
-    0% {
-        font-family: "RM-Blackletter-Mono";
-    }
+  0% {
+    font-family: "RM-Blackletter-Mono";
+  }
 
-    100% {
-        font-family: "RM-Sans-Mono";
-    }
+  100% {
+    font-family: "RM-Sans-Mono";
+  }
 }

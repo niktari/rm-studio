@@ -1,15 +1,16 @@
 function wrapWordsInDivs() {
   const allText = document.querySelectorAll(".effect");
 
-  for(let text of allText) {
+  for (let text of allText) {
     const content = text.textContent;
-    const words = content.split(' ');
-  
-    const wordsWrapped = words.map(word => `<div class="effect--div">${word}</div>`).join(' ');
-  
+    const words = content.split(" ");
+
+    const wordsWrapped = words
+      .map((word) => `<div class="effect--div">${word}</div>`)
+      .join(" ");
+
     text.innerHTML = wordsWrapped;
   }
-
 }
 
 wrapWordsInDivs();
@@ -20,51 +21,41 @@ let lettersWrapped;
 let letters;
 
 function setWordText() {
-  wordsDiv.forEach(word => {
-      const wordContent = word.textContent;
-      const letters = wordContent.split('');
-      
-      lettersWrapped = letters.map(letter => `<span class="effect--span">${letter}</span>`).join("");
-      
-      word.innerHTML = lettersWrapped;
-      
-  })
+  wordsDiv.forEach((word) => {
+    const wordContent = word.textContent;
+    const letters = wordContent.split("");
+
+    lettersWrapped = letters
+      .map((letter) => `<span class="effect--span">${letter}</span>`)
+      .join("");
+
+    word.innerHTML = lettersWrapped;
+  });
 }
 
 setWordText();
 
-
 let textSpan = document.querySelectorAll(".effect--span");
 
 function wrapTextInSpans() {
-
   textSpan.forEach((span) => {
-
-      span.onmouseover = function(){
-
-          if(span.classList.contains("blackletter")) {
-            span.classList.remove("blackletter")
-            } else {
-            span.classList.add("blackletter")
-            }
-
-          
-
-          setTimeout(()=> {
-              if(span.classList.contains("blackletter")) {
-                span.classList.remove("blackletter")
-                }
-
-          }, 1000)
-
+    span.onmouseover = function () {
+      if (span.classList.contains("blackletter")) {
+        span.classList.remove("blackletter");
+      } else {
+        span.classList.add("blackletter");
       }
 
-  
-  })
+      setTimeout(() => {
+        if (span.classList.contains("blackletter")) {
+          span.classList.remove("blackletter");
+        }
+      }, 1000);
+    };
+  });
 }
 
 wrapTextInSpans();
-
 
 // BALL
 
@@ -141,13 +132,12 @@ function checkCollisions() {
 }
 
 function addNewBall() {
-  for(let i = 0; i < maxBallNum; i++) {
+  for (let i = 0; i < maxBallNum; i++) {
     balls.push(new Ball(i));
   }
 }
 
 addNewBall();
-
 
 function animate() {
   balls.forEach((ball) => ball.move());

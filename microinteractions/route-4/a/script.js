@@ -37,36 +37,36 @@ function handleViewMore() {
 
     const originalText = viewMore.textContent;
     viewMore.innerHTML = "";
-  
-    let words = originalText.split(' ');
-  
-    let wordWrapper = '';
-  
-    wordWrapper = words.map(word => `<span class="word">${word}</span>`).join(`<span>&nbsp;</span>`);
-  
+
+    let words = originalText.split(" ");
+
+    let wordWrapper = "";
+
+    wordWrapper = words
+      .map((word) => `<span class="word">${word}</span>`)
+      .join(`<span>&nbsp;</span>`);
+
     viewMore.innerHTML = wordWrapper;
-  
+
     let wordSpans = document.querySelectorAll(".word");
-  
-    wordSpans.forEach(wordSpan => {
+
+    wordSpans.forEach((wordSpan) => {
       let text = wordSpan.innerText;
-      let letterWrapper = '';
-  
-      for(let i = 0; i < text.length; i++) {
-        letterWrapper += `<span class="letter">${text.charAt(i)}</span>`
+      let letterWrapper = "";
+
+      for (let i = 0; i < text.length; i++) {
+        letterWrapper += `<span class="letter">${text.charAt(i)}</span>`;
       }
-  
+
       wordSpan.innerHTML = letterWrapper;
-  
+
       let letterSpans = document.querySelectorAll(".letter");
-  
+
       letterSpans.forEach((letterSpan, index) => {
         letterSpan.style.animationDelay = `${index * 0.3}s`;
-      })
-  
-  
-    })
-    
+      });
+    });
+
     // MS Original Code
     // const text = viewMore.textContent.trim();
     // viewMore.innerHTML = "";
@@ -89,7 +89,7 @@ function observeParent(parent) {
 
   const observer = new MutationObserver(() => {
     console.log(
-      "Mutation detected in parent container. Re-initializing #view-more."
+      "Mutation detected in parent container. Re-initializing #view-more.",
     );
     handleViewMore();
   });

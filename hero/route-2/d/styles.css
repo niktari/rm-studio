@@ -1,8 +1,10 @@
 @font-face {
   font-family: "RM-Blackletter-Mono";
   src:
-    url("assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
-    url("assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
+    url("assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff")
+      format("woff"),
+    url("assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2")
+      format("woff2");
 }
 
 @font-face {
@@ -12,10 +14,11 @@
     url("assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
 }
 
-html, body {
+html,
+body {
   cursor: none;
   background-color: white;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 #container {
@@ -26,7 +29,7 @@ html, body {
   text-align: center;
 }
 
-#hiddenText{
+#hiddenText {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -37,11 +40,11 @@ html, body {
   line-height: 1.1;
 }
 
-.blackletter{
+.blackletter {
   font-family: "RM-Blackletter-Mono";
 }
 
-.sans{
+.sans {
   font-family: "RM-Sans-Mono";
 }
 
@@ -62,13 +65,21 @@ html, body {
   white-space: nowrap;
   /* letter-spacing: 0.1em; */
   opacity: 0;
-  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  transition:
+    transform 0.3s ease-out,
+    opacity 0.3s ease-out;
 }
 
 .custom-cursor span {
   font-family: "RM-Blackletter-Mono";
   display: inline-block;
   animation: changeFont 3s ease-in-out infinite alternate;
+}
+
+@media screen and (max-width: 600px) {
+  .custom-cursor {
+    display: none;
+  }
 }
 
 @keyframes changeFont {

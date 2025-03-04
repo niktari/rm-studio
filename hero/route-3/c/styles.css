@@ -1,15 +1,19 @@
 @font-face {
-    font-family: "RM-Blackletter-Mono";
-    src:
-      url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
-      url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
-  }
+  font-family: "RM-Blackletter-Mono";
+  src:
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff")
+      format("woff"),
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2")
+      format("woff2");
+}
 
 @font-face {
   font-family: "RM-Sans-Mono";
   src:
-    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff") format("woff"),
-    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff")
+      format("woff"),
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2")
+      format("woff2");
 }
 
 body {
@@ -24,7 +28,7 @@ body {
   align-content: center;
   cursor: default;
 }
-  
+
 #container div {
   position: relative;
   font-family: RM-Blackletter-Mono;
@@ -43,7 +47,7 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  color: #5245E8;
+  color: #5245e8;
   margin: 0;
   /* transition: 1s; */
   mix-blend-mode: multiply;

@@ -1,15 +1,19 @@
 @font-face {
   font-family: "RM-Blackletter-Mono";
   src:
-    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
-    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff")
+      format("woff"),
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2")
+      format("woff2");
 }
 
 @font-face {
   font-family: "RM-Sans-Mono";
   src:
-    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff") format("woff"),
-    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff")
+      format("woff"),
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2")
+      format("woff2");
 }
 
 #container {
@@ -18,7 +22,7 @@
   overflow: hidden;
   text-align: center;
   font-size: calc(150vw / 3);
-  transition: .1s;
+  transition: 0.1s;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -31,7 +35,7 @@
   /* outline: 1px solid red; */
 }
 
-#hiddenText{
+#hiddenText {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,11 +43,11 @@
   gap: 2vw;
 }
 
-.blackletter{
+.blackletter {
   font-family: "RM-Blackletter-Mono";
 }
 
-.sans{
+.sans {
   font-family: "RM-Sans-Mono";
 }
 

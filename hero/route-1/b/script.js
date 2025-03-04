@@ -43,7 +43,7 @@ function draw() {
       circle(
         x * mappedGridSize,
         y * mappedGridSize,
-        curPixels[y][x] * circleScaler
+        curPixels[y][x] * circleScaler,
       );
     }
   }
@@ -72,7 +72,7 @@ function generatePixels(myImg, arr) {
       const mappedBrightnessVal = constrain(
         map(brightnessVal, 0, 255, 0, 265),
         0,
-        255
+        255,
       );
       const radius = map(mappedBrightnessVal, 255, 0, 0, 10);
       arr[row][col] = radius;

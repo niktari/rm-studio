@@ -1,11 +1,13 @@
 @font-face {
   font-family: "RM-Blackletter-Mono";
   src:
-    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
-    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff")
+      format("woff"),
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2")
+      format("woff2");
 }
 
-body{
+body {
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -29,10 +31,9 @@ body{
     margin: 10vh 0;
   }
 
-  body{
+  body {
     overflow: auto;
   }
-
 }
 
 #container div {
@@ -46,11 +47,12 @@ body{
   /* outline: 1px solid red; */
 }
 
-#left, #right {
+#left,
+#right {
   /* outline: red 1px solid; */
   cursor: pointer;
 }
 
-canvas{
+canvas {
   /* outline: 1px solid black; */
 }

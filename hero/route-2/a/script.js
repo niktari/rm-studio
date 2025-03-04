@@ -3,8 +3,14 @@ const hiddenTextEl = document.getElementById("hiddenText");
 
 // Break full text into an array
 const fullTextArray = [
-  "is", "the", "Design", "Practice", "of",
-  "Ryan Bugden", "&", "Michelle Ando"
+  "is",
+  "the",
+  "Design",
+  "Practice",
+  "of",
+  "Ryan Bugden",
+  "&",
+  "Michelle Ando",
 ];
 
 const fontSizeArr = [
@@ -26,7 +32,7 @@ textContainer.addEventListener("click", () => {
     hiddenTextEl.innerHTML += " " + `<span>${fullTextArray[index]}</span>`;
     index++;
     updateFontSize();
-  } else{
+  } else {
     index = 0;
     hiddenTextEl.innerHTML = "";
     updateFontSize();

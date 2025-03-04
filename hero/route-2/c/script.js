@@ -67,14 +67,13 @@ textContainer.addEventListener("click", () => {
     hiddenTextEl.style.removeProperty("transform");
   }
 
-  if(index == 0) {
+  if (index == 0) {
     showCursor = true;
   } else {
     showCursor = false;
   }
 
   handleCursor();
-
 });
 
 function updateFontSize() {
@@ -85,55 +84,61 @@ function updateFontSize() {
 
   const scaleFactor = Math.min(
     containerHeight / textHeight,
-    containerWidth / textWidth
+    containerWidth / textWidth,
   );
   hiddenTextEl.style.transform = `scale(${scaleFactor.toFixed(2)})`;
 }
 
-
 // CURSOR
 function initCursor() {
-
-  document.onmousemove = function(e) {
-
+  document.onmousemove = function (e) {
     const { width, height } = cursor.getBoundingClientRect();
 
-    let mappedLeft = map(e.clientX, 0, window.innerWidth, width / 2, window.innerWidth - width / 2);
-    let mappedTop = map(e.clientY, 0, window.innerHeight, height / 2, window.innerHeight - height / 2);
-    
+    let mappedLeft = map(
+      e.clientX,
+      0,
+      window.innerWidth,
+      width / 2,
+      window.innerWidth - width / 2,
+    );
+    let mappedTop = map(
+      e.clientY,
+      0,
+      window.innerHeight,
+      height / 2,
+      window.innerHeight - height / 2,
+    );
 
     cursor.style.opacity = "1";
     textContainer.style.cursor = "none";
     cursor.style.left = `${mappedLeft}px`;
     cursor.style.top = `${mappedTop}px`;
     cursor.style.transform = "translate(-50%, -50%)";
-
-  }
-  
+  };
 }
 
-
 function animateText() {
-
   const originalText = cursor.textContent;
   cursor.innerHTML = "";
 
-  let words = originalText.split(' ');
+  let words = originalText.split(" ");
 
-  let wordWrapper = '';
+  let wordWrapper = "";
 
-  wordWrapper = words.map(word => `<span class="word">${word}</span>`).join(`<span>&nbsp;</span>`);
+  wordWrapper = words
+    .map((word) => `<span class="word">${word}</span>`)
+    .join(`<span>&nbsp;</span>`);
 
   cursor.innerHTML = wordWrapper;
 
   let wordSpans = document.querySelectorAll(".word");
 
-  wordSpans.forEach(wordSpan => {
+  wordSpans.forEach((wordSpan) => {
     let text = wordSpan.innerText;
-    let letterWrapper = '';
+    let letterWrapper = "";
 
-    for(let i = 0; i < text.length; i++) {
-      letterWrapper += `<span class="letter">${text.charAt(i)}</span>`
+    for (let i = 0; i < text.length; i++) {
+      letterWrapper += `<span class="letter">${text.charAt(i)}</span>`;
     }
 
     wordSpan.innerHTML = letterWrapper;
@@ -142,12 +147,11 @@ function animateText() {
 
     letterSpans.forEach((letterSpan, index) => {
       letterSpan.style.animationDelay = `${0.3 * index}s`;
-    })
-
-  })
+    });
+  });
 
   // MS Original Code
-    // const originalText = cursor.innerHTML.trim();
+  // const originalText = cursor.innerHTML.trim();
   // originalText.split("").forEach((char, index) => {
   //   let span = document.createElement("span");
   //   span.textContent = char;
@@ -176,7 +180,6 @@ function handleCursor() {
 
 handleCursor();
 
-
 // document.addEventListener("mousedown", () => {
 //   disppearCursor();
 // });
@@ -195,10 +198,10 @@ function disppearCursor() {
   cursor.style.opacity = "0";
 }
 
-(function() {
+(function () {
   const classes = document.body.classList;
   let timer = 0;
-  window.addEventListener("resize", function() {
+  window.addEventListener("resize", function () {
     if (timer) {
       clearTimeout(timer);
       timer = null;
@@ -211,10 +214,6 @@ function disppearCursor() {
   });
 })();
 
-
-
-
-
 function map(value, low1, high1, low2, high2) {
-  return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+  return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
 }

@@ -6,7 +6,9 @@ const maxBallNum = 30;
 const speed = 5;
 const balls = [];
 
-alert("For this sketch, make sure you're idle for three seconds to trigger the animation!")
+alert(
+  "For this sketch, make sure you're idle for three seconds to trigger the animation!",
+);
 
 class Ball {
   constructor(index) {

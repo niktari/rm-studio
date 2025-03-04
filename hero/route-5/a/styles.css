@@ -1,15 +1,19 @@
 @font-face {
-    font-family: "RM-Blackletter-Mono";
-    src:
-      url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
-      url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
-  }
-  
-  @font-face {
-    font-family: "RM-Sans-Mono";
-    src:
-      url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff") format("woff"),
-      url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
+  font-family: "RM-Blackletter-Mono";
+  src:
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff")
+      format("woff"),
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2")
+      format("woff2");
+}
+
+@font-face {
+  font-family: "RM-Sans-Mono";
+  src:
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff")
+      format("woff"),
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2")
+      format("woff2");
 }
 
 /* body {
@@ -17,48 +21,48 @@
 } */
 
 #container {
-    display: flex;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: -999;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: -999;
 }
 
 #zoom-letter {
-    font-size: 50vw;
-    /* color: #00bbff; */
-    line-height: 0.8;
-    mix-blend-mode: multiply;
+  font-size: 50vw;
+  /* color: #00bbff; */
+  line-height: 0.8;
+  mix-blend-mode: multiply;
 }
 
 h1 {
-    font-family: RM-Blackletter-Mono;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-size: 2.5vw;
-    cursor: default;
-    line-height: 1.2;
-    mix-blend-mode: multiply;
+  font-family: RM-Blackletter-Mono;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 2.5vw;
+  cursor: default;
+  line-height: 1.2;
+  mix-blend-mode: multiply;
 }
 
 .sans-mono {
-    font-family: "RM-Sans-Mono";
+  font-family: "RM-Sans-Mono";
 }
 
 .effect--div {
-    display: inline-block;
+  display: inline-block;
 }
 
 .effect--span {
-    position: relative;
-    display: inline-block;
-    transition: 0.3s ease-in-out;
+  position: relative;
+  display: inline-block;
+  transition: 0.3s ease-in-out;
 }

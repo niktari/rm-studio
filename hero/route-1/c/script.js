@@ -29,36 +29,59 @@ function draw() {
       const mappedGridSize = height / letterPixels.length;
 
       if (finalPixels[y][x] >= 0.1) {
-        switch(mode){
+        switch (mode) {
           case 0:
-          finalPixels[y][x] =
-          letterPixels[y][x] +
-          map(sin(frameCount/10 + x / 10 + y / 10 + mouseX/100 + mouseY/100),
-           -1, 1, -1, 2.5)
-          break;
+            finalPixels[y][x] =
+              letterPixels[y][x] +
+              map(
+                sin(
+                  frameCount / 10 +
+                    x / 10 +
+                    y / 10 +
+                    mouseX / 100 +
+                    mouseY / 100,
+                ),
+                -1,
+                1,
+                -1,
+                2.5,
+              );
+            break;
           case 1:
-          finalPixels[y][x] =
-          letterPixels[y][x] +
-          map(sin(frameCount / 10 + y * 0.2 + mouseX/100 + mouseY/100), -1, 1, -1, 2.5);
-          break;
+            finalPixels[y][x] =
+              letterPixels[y][x] +
+              map(
+                sin(frameCount / 10 + y * 0.2 + mouseX / 100 + mouseY / 100),
+                -1,
+                1,
+                -1,
+                2.5,
+              );
+            break;
           case 2:
-          finalPixels[y][x] =
-          letterPixels[y][x] +
-          sin(frameCount / 10 + x * 0.1 + mouseX/100 + mouseY/100, -1, 1, -1, 2.5);
-          break;
+            finalPixels[y][x] =
+              letterPixels[y][x] +
+              sin(
+                frameCount / 10 + x * 0.1 + mouseX / 100 + mouseY / 100,
+                -1,
+                1,
+                -1,
+                2.5,
+              );
+            break;
         }
       }
       curPixels[y][x] = lerp(curPixels[y][x], finalPixels[y][x], 0.1);
       circle(
         x * mappedGridSize,
         y * mappedGridSize,
-        curPixels[y][x] * circleScaler
+        curPixels[y][x] * circleScaler,
       );
     }
   }
 }
 
-function mousePressed(){
+function mousePressed() {
   mode = (mode + 1) % 3;
 }
 
@@ -81,7 +104,7 @@ function generatePixels(myImg, arr) {
       const mappedBrightnessVal = constrain(
         map(brightnessVal, 0, 255, 0, 265),
         0,
-        255
+        255,
       );
       const radius = map(mappedBrightnessVal, 255, 0, 0, 10);
       arr[row][col] = radius;
