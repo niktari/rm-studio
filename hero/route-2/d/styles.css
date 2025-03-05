@@ -21,6 +21,8 @@ body {
   overflow: hidden;
   cursor: none;
   background: white;
+  -webkit-font-smoothing: subpixel-antialiased;
+
 }
 
 #container {
@@ -39,9 +41,9 @@ body {
   transform: scale(var(--scalingFactor));
   -webkit-transform: scale(var(--scalingFactor), var(--scalingFactor));
   /* "Tricks" to make the sketch more performant in Safari but made the text blurry */
-  /* transform: translate3d(0, 0, 0) scale(var(--scalingFactor)) rotate(0.02deg);
-  -webkit-transform: translate3d(0, 0, 0) scale(var(--scalingFactor), var(--scalingFactor)) rotate(0.02deg) translateZ(0); */
-  backface-visibility: hidden;
+  /* transform: translate3d(0, 0, 0) scale(var(--scalingFactor)) rotate(0.02deg), translateZ(0);
+  -webkit-transform: translate3d(0, 0, 0) scale(var(--scalingFactor), var(--scalingFactor)) rotate(0.02deg) translateZ(0);
+  backface-visibility: hidden; */
   transform-origin: top center;
   transition: transform 0.1s;
 }
