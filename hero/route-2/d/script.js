@@ -1,7 +1,6 @@
 const textContainer = document.getElementById("container");
 const hiddenTextEl = document.getElementById("hiddenText");
 
-// Break full text into an array
 const fullTextArrayStyles = [
   { content: "is", style: "sans" },
   { content: "the", style: "blackletter" },
@@ -40,38 +39,61 @@ const fullTextArrayStyles = [
 ];
 
 let index = 0;
-let baseFontSize = 90;
-let containerProps = hiddenTextEl.getBoundingClientRect();
-let { width, height } = containerProps;
+const totalLines = fullTextArrayStyles.length + 1;
 
-const totalLines = fullTextArrayStyles.length;
+let viewportHeight = window.innerHeight;
+let viewportWidth = window.innerWidth;
+
+let containerProps = hiddenTextEl.getBoundingClientRect();
+let containerHeight = containerProps.height;
 
 function initStyles() {
-  containerProps = hiddenTextEl.getBoundingClientRect();
-  height = containerProps.height;
-  hiddenTextEl.style.fontSize = `${baseFontSize}vh`;
-  hiddenTextEl.style.top = `calc(50% - ${height}px / 2)`;
+  let minFontSize = Math.min(
+    viewportHeight / (1.1 * totalLines),
+    viewportWidth / (totalLines * 2)
+  );
+
+  let minFontSizeVW = (minFontSize / viewportWidth) * 100;
+  hiddenTextEl.style.fontSize = `${minFontSizeVW}vw`;
 }
 
 initStyles();
 
-window.onresize = () => {
-  initStyles();
-};
+function updateSketch() {
+  // Avoid adding multiple event listeners
+  textContainer.removeEventListener("click", updateContent);
+  textContainer.addEventListener("click", updateContent);
+}
 
-textContainer.addEventListener("click", () => {
+// Debounce resize event to improve performance during resizing
+function debounceResize() {
+  clearTimeout(timeout);
+  timeout = setTimeout(() => {
+    viewportHeight = window.innerHeight;
+    viewportWidth = window.innerWidth;
+    updateFontSize();
+  }, 100);
+}
+
+window.addEventListener("resize", debounceResize);
+updateSketch();
+
+function updateContent() {
   if (index < fullTextArrayStyles.length) {
-    hiddenTextEl.style.top = 0;
     const currentText = fullTextArrayStyles[index];
     const { content, style } = currentText;
-    hiddenTextEl.innerHTML += `<span class="${style}">${content}</span>`;
+    const newContent = document.createElement("div");
+    newContent.className = style;
+    newContent.textContent = content;
+    hiddenTextEl.appendChild(newContent);
+    hiddenTextEl.classList.remove("onlyRandM");
+    textContainer.classList.remove("onlyRandM--container");
     index++;
-    updateFontSize();
   } else {
-    hiddenTextEl.style.top = `calc(50% - ${height}px / 2)`;
     index = 0;
-    hiddenTextEl.innerHTML = '<span class="blackletter">R&M</span>';
-    hiddenTextEl.style.fontSize = `${baseFontSize}vh`;
+    hiddenTextEl.innerHTML = '<div class="blackletter">R&M</div>';
+    hiddenTextEl.classList.add("onlyRandM");
+    textContainer.classList.add("onlyRandM--container");
   }
 
   if (index == 0) {
@@ -81,12 +103,18 @@ textContainer.addEventListener("click", () => {
   }
 
   handleCursor();
-});
+
+  updateFontSize();
+}
 
 function updateFontSize() {
-  const scaledFontSize = baseFontSize / (index + 1);
-  hiddenTextEl.style.fontSize = `${scaledFontSize}vh`;
+  viewportHeight = window.innerHeight;
+  viewportWidth = window.innerWidth;
+
+  let scalingFactor = Math.min(viewportHeight / hiddenTextEl.scrollHeight, viewportWidth / hiddenTextEl.scrollWidth);
+  hiddenTextEl.style.setProperty('--scalingFactor', scalingFactor);
 }
+
 
 // CURSOR
 const cursor = document.querySelector(".custom-cursor");
@@ -192,6 +220,7 @@ disppearCursor();
 function disppearCursor() {
   cursor.style.opacity = "0";
 }
+
 
 function map(value, low1, high1, low2, high2) {
   return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
