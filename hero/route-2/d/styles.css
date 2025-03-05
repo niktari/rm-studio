@@ -1,10 +1,8 @@
 @font-face {
   font-family: "RM-Blackletter-Mono";
   src:
-    url("assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff")
-      format("woff"),
-    url("assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2")
-      format("woff2");
+    url("assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
+    url("assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
 }
 
 @font-face {
@@ -30,14 +28,20 @@ body {
 }
 
 #hiddenText {
-  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: 0.1s;
-  font-size: 90vh;
-  line-height: 1.1;
+  font-size: calc(100vw / 2);
+  gap: 0;
+}
+
+.textbox {
+  width: max-content;
+  /* transition: all .1s ease-out; */
+  height: 2em;
+  /* height: max-content; */
+  white-space: nowrap;
 }
 
 .blackletter {
