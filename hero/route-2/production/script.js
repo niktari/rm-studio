@@ -1,5 +1,8 @@
 const textContainer = document.getElementById("container");
 const hiddenTextEl = document.getElementById("hiddenText");
+let hiddenTextElements = document.querySelectorAll("#hiddenText div");
+
+let showCursor = true;
 
 const fullTextArrayStyles = [
   { content: "is", style: "sans" },
@@ -41,8 +44,8 @@ const fullTextArrayStyles = [
 let index = 0;
 const totalLines = fullTextArrayStyles.length + 1;
 
-let viewportHeight = window.innerHeight;
-let viewportWidth = window.innerWidth;
+let viewportHeight = textContainer.clientHeight;
+let viewportWidth = textContainer.clientWidth;
 
 let containerProps = hiddenTextEl.getBoundingClientRect();
 let containerHeight = containerProps.height;
@@ -53,11 +56,13 @@ function initStyles() {
     viewportWidth / (totalLines * 2)
   );
 
-  let minFontSizeVW = (minFontSize / viewportWidth) * 100;
-  hiddenTextEl.style.fontSize = `${minFontSizeVW}vw`;
+  hiddenTextEl.style.fontSize = `${minFontSize}px`; // Use px instead of vw for better precision
 }
 
-initStyles();
+window.addEventListener("load", () => {
+  initStyles();
+  updateFontSize();
+});
 
 function updateSketch() {
   // Avoid adding multiple event listeners
@@ -69,8 +74,8 @@ function updateSketch() {
 function debounceResize() {
   clearTimeout(timeout);
   timeout = setTimeout(() => {
-    viewportHeight = window.innerHeight;
-    viewportWidth = window.innerWidth;
+    viewportHeight = textContainer.clientHeight;
+    viewportWidth = textContainer.clientWidth;
     updateFontSize();
   }, 100);
 }
@@ -80,45 +85,51 @@ updateSketch();
 
 function updateContent() {
   if (index < fullTextArrayStyles.length) {
-    const currentText = fullTextArrayStyles[index];
-    const { content, style } = currentText;
+    showCursor = false;
+    mobileCursor.style.opacity = "0";
+    const { content, style } = fullTextArrayStyles[index];
     const newContent = document.createElement("div");
     newContent.className = style;
     newContent.textContent = content;
     hiddenTextEl.appendChild(newContent);
+    
     hiddenTextEl.classList.remove("onlyRandM");
     textContainer.classList.remove("onlyRandM--container");
+
     index++;
   } else {
+    
+    showCursor = true;
+    mobileCursor.style.opacity = "1";
     index = 0;
     hiddenTextEl.innerHTML = '<div class="blackletter">R&M</div>';
     hiddenTextEl.classList.add("onlyRandM");
     textContainer.classList.add("onlyRandM--container");
   }
 
-  if (index == 0) {
-    showCursor = true;
-  } else {
-    showCursor = false;
-  }
-
-  handleCursor();
-
+  handleCursor();  
   updateFontSize();
 }
 
 function updateFontSize() {
-  viewportHeight = window.innerHeight;
-  viewportWidth = window.innerWidth;
+  viewportHeight = textContainer.clientHeight;
+  viewportWidth = textContainer.clientWidth;
 
-  let scalingFactor = Math.min(viewportHeight / hiddenTextEl.scrollHeight, viewportWidth / hiddenTextEl.scrollWidth);
-  hiddenTextEl.style.setProperty('--scalingFactor', scalingFactor);
+  let contentHeight = hiddenTextEl.scrollHeight;
+  let contentWidth = hiddenTextEl.scrollWidth;
+
+  let scalingFactor = Math.min(viewportHeight / contentHeight, viewportWidth / contentWidth);
+  
+  // Apply only when necessary to prevent unnecessary layout reflows
+  if (scalingFactor !== parseFloat(hiddenTextEl.style.getPropertyValue('--scalingFactor'))) {
+    hiddenTextEl.style.setProperty('--scalingFactor', scalingFactor);
+    hiddenTextEl.style.transform = `scale(${scalingFactor})`;
+  }
 }
-
 
 // CURSOR
 const cursor = document.querySelector(".custom-cursor");
-let showCursor = true;
+const mobileCursor = document.querySelector(".mobile-cursor");
 let timeout;
 
 function initCursor() {
@@ -128,16 +139,16 @@ function initCursor() {
     let mappedLeft = map(
       e.clientX,
       0,
-      window.innerWidth,
+      textContainer.clientWidth,
       width / 2,
-      window.innerWidth - width / 2,
+      textContainer.clientWidth - width / 2,
     );
     let mappedTop = map(
       e.clientY,
       0,
-      window.innerHeight,
+      textContainer.clientHeight,
       height / 2,
-      window.innerHeight - height / 2,
+      textContainer.clientHeight - height / 2,
     );
 
     cursor.style.opacity = "1";
@@ -153,9 +164,9 @@ function initCursor() {
   };
 }
 
-function animateText() {
-  const originalText = cursor.textContent;
-  cursor.innerHTML = "";
+function animateText(el) {
+  const originalText = el.textContent;
+  el.innerHTML = "";
   const words = originalText.split(" ");
   let wordWrapper = "";
 
@@ -163,7 +174,7 @@ function animateText() {
     .map((word) => `<span class="word">${word}</span>`)
     .join(`<span>&nbsp;</span>`);
 
-  cursor.innerHTML = wordWrapper;
+  el.innerHTML = wordWrapper;
 
   const wordSpans = document.querySelectorAll(".word");
 
@@ -185,7 +196,8 @@ function animateText() {
   });
 }
 
-animateText();
+animateText(cursor);
+animateText(mobileCursor);
 
 function handleCursor() {
   if (showCursor) {
