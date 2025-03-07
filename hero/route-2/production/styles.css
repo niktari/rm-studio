@@ -1,0 +1,126 @@
+@font-face {
+  font-family: "RM-Blackletter-Mono";
+  src:
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "RM-Sans-Mono";
+  src:
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff") format("woff"),
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
+}
+
+:root {
+  --scalingFactor: 35;
+  touch-action: pan-x pan-y;
+  height: 100% 
+}
+
+html,
+body {
+  overflow: hidden;
+  cursor: none;
+  background: white;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100svh;
+}
+
+#container {
+  width: calc(100% - 2rem);
+  height: calc(100svh - 2rem);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#hiddenText {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  backface-visibility: hidden;
+  transform-origin: top center;
+  transition: transform 0.1s ease-in-out;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+  width: max-content;
+  text-wrap: nowrap;
+}
+
+#container.onlyRandM--container {
+  align-items: center;
+}
+
+#hiddenText.onlyRandM {
+  transform-origin: 50% 50%;
+}
+
+#hiddenText div {
+  font-size: 40vw;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.blackletter {
+  font-family: "RM-Blackletter-Mono";
+}
+
+.sans {
+  font-family: "RM-Sans-Mono";
+}
+
+#container ::selection {
+  background: transparent;
+  color: inherit;
+}
+
+.custom-cursor, .mobile-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  mix-blend-mode: difference;
+  filter: invert(1);
+  color: black;
+  font-size: 2rem;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.custom-cursor span, .mobile-cursor span {
+  font-family: "RM-Blackletter-Mono";
+  display: inline-block;
+  animation: changeFont 3s ease-in-out infinite alternate;
+}
+
+@keyframes changeFont {
+  0% {
+    font-family: "RM-Blackletter-Mono";
+  }
+
+  100% {
+    font-family: "RM-Sans-Mono";
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .custom-cursor {
+    display: none;
+  }
+
+  .mobile-cursor{
+    opacity: 1;
+    top: 2rem;
+    left: 50%;
+    text-align: center;
+  }
+}
