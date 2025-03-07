@@ -53,7 +53,7 @@ let containerHeight = containerProps.height;
 function initStyles() {
   let minFontSize = Math.min(
     viewportHeight / (1.1 * totalLines),
-    viewportWidth / (totalLines * 2)
+    viewportWidth / (totalLines * 2),
   );
 
   hiddenTextEl.style.fontSize = `${minFontSize}px`; // Use px instead of vw for better precision
@@ -86,28 +86,27 @@ updateSketch();
 function updateContent() {
   if (index < fullTextArrayStyles.length) {
     showCursor = false;
-    mobileCursor.classList.remove("visible");
+    mobileCursor.style.opacity = "0";
     const { content, style } = fullTextArrayStyles[index];
     const newContent = document.createElement("div");
     newContent.className = style;
     newContent.textContent = content;
     hiddenTextEl.appendChild(newContent);
-    
+
     hiddenTextEl.classList.remove("onlyRandM");
     textContainer.classList.remove("onlyRandM--container");
 
     index++;
   } else {
-  
     showCursor = true;
-    mobileCursor.classList.add("visible");
+    mobileCursor.style.opacity = "1";
     index = 0;
     hiddenTextEl.innerHTML = '<div class="blackletter">R&M</div>';
     hiddenTextEl.classList.add("onlyRandM");
     textContainer.classList.add("onlyRandM--container");
   }
 
-  handleCursor();  
+  handleCursor();
   updateFontSize();
 }
 
@@ -118,11 +117,17 @@ function updateFontSize() {
   let contentHeight = hiddenTextEl.scrollHeight;
   let contentWidth = hiddenTextEl.scrollWidth;
 
-  let scalingFactor = Math.min(viewportHeight / contentHeight, viewportWidth / contentWidth);
-  
+  let scalingFactor = Math.min(
+    viewportHeight / contentHeight,
+    viewportWidth / contentWidth,
+  );
+
   // Apply only when necessary to prevent unnecessary layout reflows
-  if (scalingFactor !== parseFloat(hiddenTextEl.style.getPropertyValue('--scalingFactor'))) {
-    hiddenTextEl.style.setProperty('--scalingFactor', scalingFactor);
+  if (
+    scalingFactor !==
+    parseFloat(hiddenTextEl.style.getPropertyValue("--scalingFactor"))
+  ) {
+    hiddenTextEl.style.setProperty("--scalingFactor", scalingFactor);
     hiddenTextEl.style.transform = `scale(${scalingFactor})`;
   }
 }
@@ -232,7 +237,6 @@ disppearCursor();
 function disppearCursor() {
   cursor.style.opacity = "0";
 }
-
 
 function map(value, low1, high1, low2, high2) {
   return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
