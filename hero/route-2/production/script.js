@@ -86,7 +86,7 @@ updateSketch();
 function updateContent() {
   if (index < fullTextArrayStyles.length) {
     showCursor = false;
-    mobileCursor.style.opacity = "0";
+    mobileCursor.classList.remove("visible");
     const { content, style } = fullTextArrayStyles[index];
     const newContent = document.createElement("div");
     newContent.className = style;
@@ -98,9 +98,9 @@ function updateContent() {
 
     index++;
   } else {
-    
+  
     showCursor = true;
-    mobileCursor.style.opacity = "1";
+    mobileCursor.classList.add("visible");
     index = 0;
     hiddenTextEl.innerHTML = '<div class="blackletter">R&M</div>';
     hiddenTextEl.classList.add("onlyRandM");
