@@ -5,7 +5,7 @@ const content = ["R", "&", "M"];
 const numBalls = 3;
 const ballSize = 80;
 const maxBallNum = 3;
-const speed = 1;
+const speed = 0.25;
 const balls = [];
 
 class Ball {
@@ -49,7 +49,7 @@ class Ball {
       this.dy *= -1;
     }
 
-    const minSpeed = 0.5;
+    const minSpeed = 0.25;
     if (Math.abs(this.dx) < minSpeed) this.dx = minSpeed * Math.sign(this.dx);
     if (Math.abs(this.dy) < minSpeed) this.dy = minSpeed * Math.sign(this.dy);
 
