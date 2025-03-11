@@ -77,6 +77,10 @@ body {
   font-family: "RM-Sans-Mono";
 }
 
+#hiddenText div.no-lineheight {
+  line-height: 0;
+}
+
 #container ::selection {
   background: transparent;
   color: inherit;

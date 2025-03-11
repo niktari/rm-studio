@@ -89,6 +89,9 @@ function updateContent() {
     mobileCursor.style.opacity = "0";
     const { content, style } = fullTextArrayStyles[index];
     const newContent = document.createElement("div");
+    const firstElement = document.querySelector("#hiddenText div");
+    firstElement.classList.remove("no-lineheight");
+
     newContent.className = style;
     newContent.textContent = content;
     hiddenTextEl.appendChild(newContent);
@@ -101,7 +104,7 @@ function updateContent() {
     showCursor = true;
     mobileCursor.style.opacity = "1";
     index = 0;
-    hiddenTextEl.innerHTML = '<div class="blackletter">R&M</div>';
+    hiddenTextEl.innerHTML = '<div class="blackletter no-lineheight">R&M</div>';
     hiddenTextEl.classList.add("onlyRandM");
     textContainer.classList.add("onlyRandM--container");
   }
