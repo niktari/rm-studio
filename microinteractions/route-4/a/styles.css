@@ -1,19 +1,15 @@
 @font-face {
   font-family: "RM-Blackletter-Mono";
   src:
-    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff")
-      format("woff"),
-    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2")
-      format("woff2");
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "RM-Sans-Mono";
   src:
-    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff")
-      format("woff"),
-    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2")
-      format("woff2");
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff") format("woff"),
+    url("../../../assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
 }
 
 #view-more {
@@ -37,6 +33,12 @@
   display: inline-block;
   font-size: 32px !important;
   animation: changeFont 3s ease-in-out infinite alternate;
+}
+
+@media only screen and (max-width: 768px) {
+  #view-more {
+    display: none;
+  }
 }
 
 @keyframes changeFont {
