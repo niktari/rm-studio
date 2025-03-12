@@ -167,9 +167,12 @@ function updateFontSize() {
   }
 }
 
+window.addEventListener("scroll", debounce(updateFontSize, 50), { passive: true });
+
+
 // Observe changes in iframe size
-const resizeObserver = new ResizeObserver(debouncedUpdateFontSize);
-resizeObserver.observe(document.documentElement);
+// const resizeObserver = new ResizeObserver(debouncedUpdateFontSize);
+// resizeObserver.observe(document.documentElement);
 
 
 // CURSOR
