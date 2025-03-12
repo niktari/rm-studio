@@ -134,11 +134,11 @@ function updateFontSize() {
   );
 
   if (viewportWidth <= 768) {
-    let minAdjustment
-    
+    let minAdjustment;
+
     if (index >= 1 && index <= 2) {
       minAdjustment = 0.3;
-    } else if(index === 5) {
+    } else if (index === 5) {
       minAdjustment = 0.1;
     } else {
       minAdjustment = 0.01;
@@ -149,12 +149,15 @@ function updateFontSize() {
     }
   }
 
-  // Apply only if the value actually changes
   if (scalingFactor !== currentScalingFactor) {
-    hiddenTextEl.style.setProperty("--scalingFactor", scalingFactor);
-    hiddenTextEl.style.transform = `scale(${scalingFactor})`;
+    requestAnimationFrame(() => {
+      hiddenTextEl.style.setProperty("--scalingFactor", scalingFactor);
+      hiddenTextEl.style.transform = `scale(${scalingFactor})`;
+    });
   }
 }
+
+
 
 // CURSOR
 const cursor = document.querySelector(".custom-cursor");
