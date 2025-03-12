@@ -117,6 +117,18 @@ function updateContent() {
   updateFontSize();
 }
 
+// Debounce function: Limits the rate at which a function is called
+function debounce(func, delay) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
+// Debounced version of updateFontSize
+const debouncedUpdateFontSize = debounce(updateFontSize, 100);
+
 function updateFontSize() {
   viewportHeight = textContainer.clientHeight;
   viewportWidth = textContainer.clientWidth;
@@ -157,6 +169,8 @@ function updateFontSize() {
   }
 }
 
+// Listen for scroll events and apply debounce
+window.addEventListener("scroll", debouncedUpdateFontSize, { passive: true });
 
 
 // CURSOR
