@@ -109,7 +109,7 @@ function updateContent() {
     textContainer.classList.add("onlyRandM--container");
 
     // Reset scaling factor
-    // hiddenTextEl.style.setProperty("--scalingFactor", 35);
+    hiddenTextEl.style.setProperty("--scalingFactor", 35);
     // hiddenTextEl.style.transform = "scale(1)";
   }
 
@@ -137,7 +137,7 @@ function updateFontSize() {
     let minAdjustment
     
     if (index >= 1 && index <= 2) {
-      minAdjustment = 0.5;
+      minAdjustment = 0.3;
     } else if(index === 5) {
       minAdjustment = 0.1;
     } else {
