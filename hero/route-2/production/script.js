@@ -169,8 +169,14 @@ function updateFontSize() {
   }
 }
 
-// Listen for scroll events and apply debounce
-window.addEventListener("scroll", debouncedUpdateFontSize, { passive: true });
+// Detect whether the script is inside an iFrame
+if (window !== window.parent) {
+  // Listen for scroll events on the parent page if inside an iFrame
+  window.parent.addEventListener("scroll", debouncedUpdateFontSize, { passive: true });
+} else {
+  // Fallback: Listen for scroll events on the current window
+  window.addEventListener("scroll", debouncedUpdateFontSize, { passive: true });
+}
 
 
 // CURSOR
