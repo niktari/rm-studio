@@ -146,13 +146,15 @@ function updateFontSize() {
   );
 
   if (viewportWidth <= 768) {
-    let minAdjustment = 0.01;
+    // let minAdjustment = 0.01;
 
-    // if (index >= 1 && index <= 2) {
-    //   minAdjustment = 0.1;
-    // } else {
-    //   minAdjustment = 0.01;
-    // }
+    let minAdjustment;
+
+    if (index >= 1 && index <= 2) {
+      minAdjustment = 0.1;
+    } else {
+      minAdjustment = 0.01;
+    }
 
     if (scalingFactor >= currentScalingFactor) {
       scalingFactor = currentScalingFactor - minAdjustment; 
