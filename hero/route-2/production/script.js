@@ -146,7 +146,7 @@ function updateFontSize() {
   );
 
   if (viewportWidth <= 768) {
-    let minAdjustment = 0.01;
+    let minAdjustment = 0.1;
 
     // if (index >= 1 && index <= 2) {
     //   minAdjustment = 0.1;
