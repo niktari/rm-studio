@@ -107,6 +107,10 @@ function updateContent() {
     hiddenTextEl.innerHTML = '<div class="blackletter no-lineheight">R&M</div>';
     hiddenTextEl.classList.add("onlyRandM");
     textContainer.classList.add("onlyRandM--container");
+
+    // Reset scaling factor
+    hiddenTextEl.style.setProperty("--scalingFactor", 35);
+    // hiddenTextEl.style.transform = "scale(1)";
   }
 
   handleCursor();
@@ -122,14 +126,31 @@ function updateFontSize() {
 
   let scalingFactor = Math.min(
     viewportHeight / contentHeight,
-    viewportWidth / contentWidth,
+    viewportWidth / contentWidth
   );
 
-  // Apply only when necessary to prevent unnecessary layout reflows
-  if (
-    scalingFactor !==
-    parseFloat(hiddenTextEl.style.getPropertyValue("--scalingFactor"))
-  ) {
+  let currentScalingFactor = parseFloat(
+    hiddenTextEl.style.getPropertyValue("--scalingFactor")
+  );
+
+  if (viewportWidth <= 768) {
+    let minAdjustment
+    
+    if (index >= 1 && index <= 2) {
+      minAdjustment = 0.5;
+    } else if(index === 5) {
+      minAdjustment = 0.1;
+    } else {
+      minAdjustment = 0.01;
+    }
+
+    if (scalingFactor >= currentScalingFactor) {
+      scalingFactor = currentScalingFactor - minAdjustment; 
+    }
+  }
+
+  // Apply only if the value actually changes
+  if (scalingFactor !== currentScalingFactor) {
     hiddenTextEl.style.setProperty("--scalingFactor", scalingFactor);
     hiddenTextEl.style.transform = `scale(${scalingFactor})`;
   }

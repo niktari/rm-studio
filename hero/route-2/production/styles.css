@@ -130,8 +130,10 @@ body {
   .mobile-cursor {
     display: block;
     opacity: 1;
-    top: 2rem;
+    bottom: calc(30% - 3rem);
     left: 50%;
     text-align: center;
+    margin: 0;
   }
+  
 }
