@@ -149,8 +149,6 @@ function updateFontSize() {
     let minAdjustment;
 
     if (index >= 1 && index <= 2) {
-      minAdjustment = 0.3;
-    } else if (index === 5) {
       minAdjustment = 0.1;
     } else {
       minAdjustment = 0.01;
