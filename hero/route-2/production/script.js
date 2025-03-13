@@ -153,8 +153,10 @@ function updateFontSize() {
       minAdjustment = 0.3;
     } else if (index === 5) {
       minAdjustment = 0.05;
-    } else {
+    } else if(index > 5 && index < 30) {
       minAdjustment = 0.01;
+    } else {
+      minAdjustment = 0;
     }
 
     if (index === 0) {
