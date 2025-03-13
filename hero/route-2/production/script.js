@@ -138,12 +138,15 @@ function updateFontSize() {
 
   let scalingFactor = Math.min(
     viewportHeight / contentHeight,
-    viewportWidth / contentWidth
+    viewportWidth / contentWidth,
   );
 
   let currentScalingFactor = parseFloat(
-    hiddenTextEl.style.getPropertyValue("--scalingFactor")
+    hiddenTextEl.style.getPropertyValue("--scalingFactor"),
   );
+
+  window.scaling = scalingFactor;
+  updateDebug();
 
   if (viewportWidth <= 768) {
     // let minAdjustment = 0.01;
@@ -157,7 +160,7 @@ function updateFontSize() {
     }
 
     if (scalingFactor >= currentScalingFactor) {
-      scalingFactor = currentScalingFactor - minAdjustment; 
+      scalingFactor = currentScalingFactor - minAdjustment;
     }
   }
 
@@ -169,13 +172,13 @@ function updateFontSize() {
   }
 }
 
-window.addEventListener("scroll", debounce(updateFontSize, 50), { passive: true });
-
+window.addEventListener("scroll", debounce(updateFontSize, 50), {
+  passive: true,
+});
 
 // Observe changes in iframe size
 // const resizeObserver = new ResizeObserver(debouncedUpdateFontSize);
 // resizeObserver.observe(document.documentElement);
-
 
 // CURSOR
 const cursor = document.querySelector(".custom-cursor");

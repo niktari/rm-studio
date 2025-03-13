@@ -140,5 +140,13 @@ body {
     text-align: center;
     margin: 0;
   }
-  
+}
+
+.debugger {
+  display: fixed;
+  color: red;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  font-size: 2rem;
 }
