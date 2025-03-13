@@ -3,11 +3,14 @@
 const container = document.getElementById("container");
 const content = ["R", "&", "M"];
 const numBalls = 3;
-const ballSize = 80;
+let ballSize = window.innerWidth < 480 ? 50 : 80;
 const maxBallNum = 3;
 const speed = 0.25;
 const balls = [];
 
+window.addEventListener("resize", () => {
+  ballSize = window.innerWidth < 480 ? 50 : 80;
+});
 class Ball {
   constructor(index) {
     this.el = document.createElement("div");

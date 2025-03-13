@@ -42,6 +42,7 @@ const fullTextArrayStyles = [
 ];
 
 let index = 0;
+let lastIndex = -1;
 const totalLines = fullTextArrayStyles.length + 1;
 
 let viewportHeight = textContainer.clientHeight;
@@ -145,31 +146,37 @@ function updateFontSize() {
     hiddenTextEl.style.getPropertyValue("--scalingFactor"),
   );
 
-  window.scaling = scalingFactor;
-  updateDebug();
-
-  if (viewportWidth <= 768) {
-    // let minAdjustment = 0.01;
-
+  if (viewportWidth <= 480) {
     let minAdjustment;
 
     if (index >= 1 && index <= 2) {
-      minAdjustment = 0.1;
+      minAdjustment = 0.3;
+    } else if (index === 5) {
+      minAdjustment = 0.05;
     } else {
       minAdjustment = 0.01;
     }
 
-    if (scalingFactor >= currentScalingFactor) {
-      scalingFactor = currentScalingFactor - minAdjustment;
+    if (index === 0) {
+      updateScaling(scalingFactor);
+      lastIndex = index;
+    } else if (lastIndex !== index) {
+      const newScalingFactor = currentScalingFactor - minAdjustment;
+      if (newScalingFactor <= scalingFactor) {
+        scalingFactor = newScalingFactor;
+      }
+      lastIndex = index;
+      // updateDebug();
+      updateScaling(scalingFactor);
     }
+  } else if (scalingFactor !== currentScalingFactor) {
+    updateScaling(scalingFactor);
   }
+}
 
-  if (scalingFactor !== currentScalingFactor) {
-    requestAnimationFrame(() => {
-      hiddenTextEl.style.setProperty("--scalingFactor", scalingFactor);
-      hiddenTextEl.style.transform = `scale(${scalingFactor})`;
-    });
-  }
+function updateScaling(scalingFactor) {
+  hiddenTextEl.style.setProperty("--scalingFactor", scalingFactor);
+  hiddenTextEl.style.transform = `scale(${scalingFactor})`;
 }
 
 window.addEventListener("scroll", debounce(updateFontSize, 50), {

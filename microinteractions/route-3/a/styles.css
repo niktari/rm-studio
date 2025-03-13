@@ -1,10 +1,8 @@
 @font-face {
   font-family: "RM-Blackletter-Mono";
   src:
-    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff")
-      format("woff"),
-    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2")
-      format("woff2");
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
+    url("../../../assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
 }
 
 body {
@@ -30,4 +28,14 @@ body {
   justify-content: center;
   align-items: center;
   overflow-y: hidden;
+}
+
+
+@media screen and (max-width: 480px) {
+  .ball {
+    width: 50px;
+    height: 50px;
+    font-size: 3.55rem;
+  }
+
 }

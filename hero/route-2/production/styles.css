@@ -149,4 +149,14 @@ body {
   left: 0;
   z-index: 1000;
   font-size: 2rem;
+  display: none;
+}
+
+.debug {
+  outline: 1px solid blue;
+}
+
+.debug>div {
+  background: yellow;
+  outline: 1px solid red;
 }
