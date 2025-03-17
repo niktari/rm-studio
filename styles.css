@@ -1,15 +1,13 @@
 @font-face {
   font-family: "RM-Blackletter-Mono";
   src:
-    url("assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff") format("woff"),
-    url("assets/blackletter-mono/R&M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
+    url("https://r-and-m.s3.us-east-1.amazonaws.com/studio_website/R%26M_Blackletter_Mono_WIP-Regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "RM-Sans-Mono";
   src:
-    url("assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff") format("woff"),
-    url("assets/sans-mono/R&M_Sans_Mono_WIP-Regular.woff2") format("woff2");
+    url("https://r-and-m.s3.us-east-1.amazonaws.com/studio_website/R%26M_Sans_Mono_WIP-Regular.woff2") format("woff2");
 }
 
 :root {
