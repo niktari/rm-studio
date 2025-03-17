@@ -66,16 +66,6 @@ function handleViewMore() {
         letterSpan.style.animationDelay = `${index * 0.3}s`;
       });
     });
-
-    // MS Original Code
-    // const text = viewMore.textContent.trim();
-    // viewMore.innerHTML = "";
-    // text.split("").forEach((char, i) => {
-    //   let span = document.createElement("span");
-    //   span.textContent = char;
-    //   span.style.animationDelay = `${i * 0.3}s`;
-    //   viewMore.appendChild(span);
-    // });
   }
 
   addHoverEffect(".project-card .linked");
