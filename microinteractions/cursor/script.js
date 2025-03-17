@@ -98,4 +98,7 @@ function initialize() {
   }
 }
 
-initialize();
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOMContentLoaded: Running initialize()...");
+  initialize();
+});
