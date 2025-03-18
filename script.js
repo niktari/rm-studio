@@ -218,11 +218,7 @@ function initCursor() {
       (height / 2) + offset,
       containerHeight - offset - (height / 2),
     );
-
-    console.log(containerHeight)
-    console.log(height)
-    console.log(containerHeight - height / 2)
-
+    
     cursor.style.opacity = "1";
     textContainer.style.cursor = "none";
     cursor.style.left = `${mappedLeft}px`;
