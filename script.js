@@ -198,20 +198,30 @@ function initCursor() {
   document.onmousemove = function (e) {
     const { width, height } = cursor.getBoundingClientRect();
 
+    let containerWidth = textContainer.offsetWidth;
+    let containerHeight = textContainer.offsetHeight;
+
+    let offset = convertRemToPixels(1);
+
     let mappedLeft = map(
       e.clientX,
       0,
-      textContainer.clientWidth,
-      width / 2,
-      textContainer.clientWidth - width / 2,
+      containerWidth,
+      (width / 2) + offset,
+      containerWidth - offset - (width / 2)
     );
+    
     let mappedTop = map(
       e.clientY,
       0,
-      textContainer.clientHeight,
-      height / 2,
-      textContainer.clientHeight - height / 2,
+      containerHeight,
+      (height / 2) + offset,
+      containerHeight - offset - (height / 2),
     );
+
+    console.log(containerHeight)
+    console.log(height)
+    console.log(containerHeight - height / 2)
 
     cursor.style.opacity = "1";
     textContainer.style.cursor = "none";
@@ -223,7 +233,9 @@ function initCursor() {
     timeout = setTimeout(() => {
       disppearCursor();
     }, 10000);
+
   };
+
 }
 
 function animateText(el) {
@@ -297,4 +309,9 @@ function disppearCursor() {
 
 function map(value, low1, high1, low2, high2) {
   return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
+  // return Math.min(high2, Math.max(low2, mappedValue)); // Clamps to [low2, high2]
+}
+
+function convertRemToPixels(rem) {    
+  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 }
